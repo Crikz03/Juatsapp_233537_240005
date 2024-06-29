@@ -22,6 +22,7 @@ public class Chat {
     private List<ObjectId> historialMensajes;
 
     public Chat() {
+        this.historialMensajes = new ArrayList<>();
     }
 
     public Chat(ObjectId receptor, ObjectId emisor, LocalDateTime fecha) {

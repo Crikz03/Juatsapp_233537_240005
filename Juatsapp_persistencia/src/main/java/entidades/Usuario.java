@@ -19,20 +19,30 @@ public class Usuario {
     private ObjectId id;
     private String telefono;
     private String contrasena;
+    private String nombres;
+    private String apellidoPaterno;
+    private String apellidoMaterno;
     private Genero sexo;
-    private List<ObjectId> chats;
+    private List<String> chats;
+    private List<String> contactos;
     private Imagen imagenPerfil;
     private LocalDateTime fechaNacimiento;
     private Direccion direccion;
 
     public Usuario() {
+        this.chats = new ArrayList<>();
+        this.contactos = new ArrayList<>();
     }
 
-    public Usuario(String telefono, String contrasena, Genero sexo, Imagen imagenPerfil, LocalDateTime fechaNacimiento, Direccion direccion) {
+    public Usuario(String telefono, String contrasena, String nombres, String apellidoPaterno, String apellidoMaterno, Genero sexo, Imagen imagenPerfil, LocalDateTime fechaNacimiento, Direccion direccion) {
         this.telefono = telefono;
         this.contrasena = contrasena;
+        this.nombres = nombres;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
         this.sexo = sexo;
         this.chats = new ArrayList<>();
+        this.contactos = new ArrayList<>();
         this.imagenPerfil = imagenPerfil;
         this.fechaNacimiento = fechaNacimiento;
         this.direccion = direccion;
@@ -62,6 +72,30 @@ public class Usuario {
         this.telefono = telefono;
     }
 
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
+    }
+
+    public void setApellidoPaterno(String apellidoPaterno) {
+        this.apellidoPaterno = apellidoPaterno;
+    }
+
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
+    }
+
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno;
+    }
+
     public Genero getSexo() {
         return sexo;
     }
@@ -70,15 +104,20 @@ public class Usuario {
         this.sexo = sexo;
     }
 
-    public List<ObjectId> getChats() {
-        if (chats == null) {
-            return new ArrayList<>();
-        }
+    public List<String> getChats() {
         return chats;
     }
 
-    public void setChats(List<ObjectId> chats) {
+    public void setChats(List<String> chats) {
         this.chats = chats;
+    }
+
+    public List<String> getContactos() {
+        return contactos;
+    }
+
+    public void setContactos(List<String> contactos) {
+        this.contactos = contactos;
     }
 
     public Imagen getImagenPerfil() {
