@@ -22,5 +22,4 @@ public interface IUsuarioDAO {
 
     public Usuario consultarPorId(String id) throws PersistenciaException;
 
-    public Usuario consultarPortelefono(String telefono) throws PersistenciaException;
 }
