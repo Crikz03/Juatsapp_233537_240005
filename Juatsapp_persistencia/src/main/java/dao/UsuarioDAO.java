@@ -27,10 +27,11 @@ import org.bson.types.ObjectId;
 
 /**
  *
- * @author eljulls
+ * @author Chris
  */
 public class UsuarioDAO implements IUsuarioDAO {
 
+<<<<<<< HEAD
     private final String connectionString;
     private final String databaseName;
 
@@ -49,6 +50,9 @@ public class UsuarioDAO implements IUsuarioDAO {
 
     private final MongoCollection<Usuario> coleccionUsuarios;
     private final DireccionDAO direcdao;
+=======
+    private final MongoCollection<Usuario> coleccionUsuarios;
+>>>>>>> parent of 004bf59 (Merge branch 'main' into Chris)
     private final ImagenDAO imadao;
 
     public UsuarioDAO() {
@@ -169,5 +173,8 @@ public class UsuarioDAO implements IUsuarioDAO {
         this.coleccionUsuarios.updateOne(new Document("_id", userId), updateQuery);
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 004bf59 (Merge branch 'main' into Chris)
 }

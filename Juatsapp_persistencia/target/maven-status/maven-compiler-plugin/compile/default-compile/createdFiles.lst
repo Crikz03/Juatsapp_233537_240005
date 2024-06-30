@@ -6,7 +6,10 @@ excepciones\PersistenciaException.class
 conexion\ConexionMongoDB.class
 dao\DireccionDAO.class
 interfaces\IDireccionDAO.class
+<<<<<<< HEAD
 entidades\Chat.class
+=======
+>>>>>>> parent of 004bf59 (Merge branch 'main' into Chris)
 pruebaTemporal\MensajeChatPrueba.class
 entidades\Chat.class
 interfaces\IimagenDAO.class

@@ -5,7 +5,6 @@
 package conexion;
 
 import com.mongodb.MongoClientSettings;
-import com.mongodb.MongoException;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
@@ -18,7 +17,7 @@ import org.bson.codecs.pojo.PojoCodecProvider;
  *
  * @author Carlos 233537, Chris 240005
  */
-public class ConexionMongoDB implements AutoCloseable {
+public class ConexionMongoDB {
 
     private final MongoClient mongoClient;
     private final CodecRegistry codecRegistry;
@@ -32,10 +31,5 @@ public class ConexionMongoDB implements AutoCloseable {
 
     public MongoDatabase getDatabase() {
         return mongoClient.getDatabase(databaseName).withCodecRegistry(codecRegistry);
-    }
-
-    @Override
-    public void close() {
-        mongoClient.close();
     }
 }

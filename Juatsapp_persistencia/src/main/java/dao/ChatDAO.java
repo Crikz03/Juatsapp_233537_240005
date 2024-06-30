@@ -34,9 +34,14 @@ public class ChatDAO implements IChatDAO {
 
     @Override
     public void guardar(Chat chat) throws PersistenciaException {
+<<<<<<< HEAD
         try (ConexionMongoDB conexionMongoDB = MongoClientFactory.createConexionMongoDB(connectionString, databaseName)) {
             MongoCollection<Chat> coleccionChats = conexionMongoDB.getDatabase().getCollection("chats", Chat.class);
             coleccionChats.insertOne(chat);
+=======
+        try {
+            this.coleccionChats.insertOne(chat);
+>>>>>>> parent of 004bf59 (Merge branch 'main' into Chris)
         } catch (MongoException e) {
             throw new PersistenciaException("No se pudo agregar el chat con: " + chat.getId() + "a la coleccion.");
         }
@@ -44,6 +49,7 @@ public class ChatDAO implements IChatDAO {
 
     @Override
     public void actualizar(Chat chat) throws PersistenciaException {
+<<<<<<< HEAD
         try (ConexionMongoDB conexionMongoDB = MongoClientFactory.createConexionMongoDB(connectionString, databaseName)) {
             MongoCollection<Chat> coleccionChats = conexionMongoDB.getDatabase().getCollection("chats", Chat.class);
             Bson filter = Filters.eq("_id", chat.getId());
@@ -51,6 +57,9 @@ public class ChatDAO implements IChatDAO {
         } catch (MongoException e) {
             throw new PersistenciaException("No se pudo actualizar el chat con id: " + chat.getId());
         }
+=======
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+>>>>>>> parent of 004bf59 (Merge branch 'main' into Chris)
     }
 
     @Override
@@ -95,4 +104,9 @@ public class ChatDAO implements IChatDAO {
             throw new PersistenciaException("No se pudo agregar el mensaje al chat con id: " + chatId);
         }
     }
+<<<<<<< HEAD
 }
+=======
+
+}
+>>>>>>> parent of 004bf59 (Merge branch 'main' into Chris)

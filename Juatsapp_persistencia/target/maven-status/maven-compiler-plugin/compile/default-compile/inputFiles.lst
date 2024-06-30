@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 C:\Users\eljulls\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\entidades\Usuario.java
@@ -21,6 +22,9 @@ C:\Users\eljulls\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\s
 C:\Users\eljulls\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\interfaces\IMensajeDAO.java
 C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\interfaces\IDireccionDAO.java
 >>>>>>> parent of ed23030 (Reestructuracion)
+=======
+C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\interfaces\IDireccionDAO.java
+>>>>>>> parent of 004bf59 (Merge branch 'main' into Chris)
 C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\interfaces\IUsuarioDAO.java
 C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\entidades\Direccion.java
 C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\excepciones\PersistenciaException.java
