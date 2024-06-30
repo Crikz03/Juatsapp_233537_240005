@@ -42,7 +42,7 @@ public class MensajeChatPrueba {
 
             // Crear un chat y guardarlo usando ChatDAO
             Chat chat = new Chat(usuarioReceptor, usaurioEmisor, LocalDateTime.now());
-            chatDAO.guardar(chat);
+            chatDAO.Guardar(chat);
             System.out.println("Chat guardado correctamente.");
 
             // Obtener el ID del mensaje guardado y el ID del chat guardado
