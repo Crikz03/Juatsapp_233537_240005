@@ -11,7 +11,6 @@ pruebaTemporal\UsuarioPrueba.class
 entidades\Direccion.class
 utilidades\Encriptador.class
 dao\UsuarioDAO.class
-excepciones\ConexionException.class
 interfaces\IUsuarioDAO.class
 entidades\Mensaje.class
 utilidades\Genero.class
