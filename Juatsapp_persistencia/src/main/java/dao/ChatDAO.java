@@ -37,6 +37,8 @@ public class ChatDAO implements IChatDAO {
         try (ConexionMongoDB conexionMongoDB = MongoClientFactory.createConexionMongoDB(connectionString, databaseName)) {
             MongoCollection<Chat> coleccionChats = conexionMongoDB.getDatabase().getCollection("chats", Chat.class);
             coleccionChats.insertOne(chat);
+        try {
+            this.coleccionChats.insertOne(chat);
         } catch (MongoException e) {
             throw new PersistenciaException("No se pudo agregar el chat con: " + chat.getId() + "a la coleccion.");
         }
@@ -51,6 +53,7 @@ public class ChatDAO implements IChatDAO {
         } catch (MongoException e) {
             throw new PersistenciaException("No se pudo actualizar el chat con id: " + chat.getId());
         }
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override

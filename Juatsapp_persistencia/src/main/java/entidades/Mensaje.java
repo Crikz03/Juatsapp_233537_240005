@@ -22,16 +22,16 @@ public class Mensaje {
     public Mensaje() {
     }
 
+    public Mensaje(ObjectId usuarioReceptor, String contenidoMensaje, LocalDateTime hora) {
+        this.usuarioReceptor = usuarioReceptor;
+        this.contenidoMensaje = contenidoMensaje;
+        this.hora = hora;
+    }
+
     public Mensaje(ObjectId usuarioReceptor, String contenidoMensaje, Imagen imagen, LocalDateTime hora) {
         this.usuarioReceptor = usuarioReceptor;
         this.contenidoMensaje = contenidoMensaje;
         this.imagen = imagen;
-        this.hora = hora;
-    }
-
-    public Mensaje(ObjectId usuarioReceptor, String contenidoMensaje, LocalDateTime hora) {
-        this.usuarioReceptor = usuarioReceptor;
-        this.contenidoMensaje = contenidoMensaje;
         this.hora = hora;
     }
 

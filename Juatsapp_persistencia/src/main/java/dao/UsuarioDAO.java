@@ -24,21 +24,7 @@ import org.bson.Document;
 
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
-
-/**
- *
- * @author eljulls
- */
-public class UsuarioDAO implements IUsuarioDAO {
-
-    private final String connectionString;
-    private final String databaseName;
-
-    public UsuarioDAO(String connectionString, String databaseName) {
-        this.connectionString = connectionString;
-        this.databaseName = databaseName;
-
-import org.bson.types.ObjectId;
+import interfaces.IimagenDAO;
 import utilidades.Encriptador;
 
 /**
@@ -48,7 +34,6 @@ import utilidades.Encriptador;
 public class UsuarioDAO implements IUsuarioDAO {
 
     private final MongoCollection<Usuario> coleccionUsuarios;
-    private final DireccionDAO direcdao;
     private final ImagenDAO imadao;
 
     public UsuarioDAO() {

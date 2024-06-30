@@ -18,7 +18,7 @@ import org.bson.types.ObjectId;
  *
  * @author Chris
  */
-public class ImagenDAO implements IimagenDAO {
+public class ImagenDAO implements IimagenDAO{
 
     private final MongoCollection<Imagen> coleccionImagenes;
 
@@ -72,5 +72,4 @@ public class ImagenDAO implements IimagenDAO {
         document.append("archivoImagen", imagen.getArchivoImagen());
         return document;
     }
-
 }

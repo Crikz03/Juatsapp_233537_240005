@@ -4,8 +4,6 @@
  */
 package pruebaTemporal;
 
-import com.mongodb.client.MongoCollection;
-import conexion.ConexionMongoDB;
 import dao.ChatDAO;
 import dao.MensajeDAO;
 import dao.UsuarioDAO;
@@ -13,8 +11,6 @@ import entidades.Chat;
 import entidades.Mensaje;
 import excepciones.PersistenciaException;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import org.bson.Document;
 import org.bson.types.ObjectId;
 
 /**

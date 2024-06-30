@@ -76,5 +76,4 @@ public class MensajeDAO implements IMensajeDAO {
             return listaMensajes.get(0);
         }
     }
-
 }

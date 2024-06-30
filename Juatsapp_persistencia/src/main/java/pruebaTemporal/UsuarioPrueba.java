@@ -60,7 +60,6 @@ public class UsuarioPrueba {
 //        usuario.getDireccion().setNumero("456");
 //        usuario.getDireccion().setColonia("Nueva Colonia");
 //        usuario.getDireccion().setCodigoPostal(67890);
-
 //        try {
 //            usuarioDAO.actualizar(usuario);
 //            System.out.println("Usuario actualizado exitosamente");
@@ -73,6 +72,6 @@ public class UsuarioPrueba {
 //        } catch (PersistenciaException ex) {
 //            Logger.getLogger(UsuarioPrueba.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-
     }
+
 }
