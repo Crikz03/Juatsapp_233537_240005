@@ -1,10 +1,16 @@
 interfaces\IChatDAO.class
 interfaces\IMensajeDAO.class
+dao\ImagenDAO.class
 excepciones\PersistenciaException.class
 conexion\ConexionMongoDB.class
 dao\DireccionDAO.class
 interfaces\IDireccionDAO.class
 entidades\Chat.class
+pruebaTemporal\MensajeChatPrueba.class
+entidades\Chat.class
+interfaces\IimagenDAO.class
+dao\MensajeDAO.class
+pruebaTemporal\UsuarioPrueba.class
 entidades\Direccion.class
 utilidades\Encriptador.class
 dao\UsuarioDAO.class
