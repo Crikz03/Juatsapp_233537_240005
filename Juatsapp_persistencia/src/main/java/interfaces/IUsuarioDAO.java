@@ -21,6 +21,8 @@ public interface IUsuarioDAO {
     public List<Usuario> consultarTodos() throws PersistenciaException;
 
     public Usuario consultarPorId(String id) throws PersistenciaException;
+    
+    public Usuario consultarPortelefono(String telefono) throws PersistenciaException;
 
     public Usuario consultarPortelefono(String telefono) throws PersistenciaException;
 }

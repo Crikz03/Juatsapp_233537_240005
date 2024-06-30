@@ -14,9 +14,9 @@ import java.util.List;
  */
 public interface IChatDAO {
 
-    public void guardar(Chat chat) throws PersistenciaException;
+    public void Guardar(Chat chat) throws PersistenciaException;
 
-    public void actualizar(Chat chat) throws PersistenciaException;
+    public void Actualizar(Chat chat) throws PersistenciaException;
 
     public void Eliminar(Chat chat) throws PersistenciaException;
 

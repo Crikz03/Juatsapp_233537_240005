@@ -1,6 +1,6 @@
-C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\interfaces\IDireccionDAO.java
 C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\interfaces\IUsuarioDAO.java
 C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\entidades\Direccion.java
+C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\excepciones\ConexionException.java
 C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\excepciones\PersistenciaException.java
 C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\interfaces\IMensajeDAO.java
 C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\dao\UsuarioDAO.java
@@ -8,7 +8,6 @@ C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src
 C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\utilidades\Encriptador.java
 C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\interfaces\IimagenDAO.java
 C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\entidades\Imagen.java
-C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\dao\DireccionDAO.java
 C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\interfaces\IChatDAO.java
 C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\dao\ImagenDAO.java
 C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\utilidades\Genero.java

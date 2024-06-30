@@ -18,11 +18,11 @@ import utilidades.Encriptador;
 
 /**
  *
- * @author Chris
+ * @author eljulls
  */
 public class UsuarioDAO implements IUsuarioDAO {
 
-    private final MongoCollection<Usuario> coleccionUsuarios;
+  private final MongoCollection<Usuario> coleccionUsuarios;
     private final ImagenDAO imadao;
 
     public UsuarioDAO() {
@@ -102,4 +102,4 @@ public class UsuarioDAO implements IUsuarioDAO {
         this.coleccionUsuarios.updateOne(new Document("_id", userId), updateQuery);
     }
 
-}
+    }

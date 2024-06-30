@@ -29,7 +29,7 @@ public class ChatDAO implements IChatDAO {
     }
 
     @Override
-    public void guardar(Chat chat) throws PersistenciaException {
+    public void Guardar(Chat chat) throws PersistenciaException {
         try {
             this.coleccionChats.insertOne(chat);
         } catch (MongoException e) {
@@ -38,7 +38,7 @@ public class ChatDAO implements IChatDAO {
     }
 
     @Override
-    public void actualizar(Chat chat) throws PersistenciaException {
+    public void Actualizar(Chat chat) throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -75,5 +75,4 @@ public class ChatDAO implements IChatDAO {
         Document updateQuery = new Document("$push", new Document("historialMensajes", mensajeId));
         this.coleccionChats.updateOne(new Document("_id", chatId), updateQuery);
     }
-
 }
