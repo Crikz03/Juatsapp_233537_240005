@@ -19,11 +19,6 @@ public class PersistenciaException extends Exception {
         super(message);
     }
 
-    public PersistenciaException(String message, Throwable cause) {
-        super(message, cause);
-    }
-    
-
     /**
      * Obtener la causa de la excepcion
      *
