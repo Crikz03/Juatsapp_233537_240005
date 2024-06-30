@@ -15,20 +15,20 @@ public class Imagen {
 
     private ObjectId id;
     private String nombre;
-    private Binary ArchivoImagen;
+    private Binary archivoImagen;
 
     public Imagen() {
     }
 
-    public Imagen(ObjectId id, String nombre, Binary ArchivoImagen) {
+    public Imagen(ObjectId id, String nombre, Binary archivoImagen) {
         this.id = id;
         this.nombre = nombre;
-        this.ArchivoImagen = ArchivoImagen;
+        this.archivoImagen = archivoImagen;
     }
 
-    public Imagen(String nombre, Binary ArchivoImagen) {
+    public Imagen(String nombre, Binary archivoImagen) {
         this.nombre = nombre;
-        this.ArchivoImagen = ArchivoImagen;
+        this.archivoImagen = archivoImagen;
     }
 
     public ObjectId getId() {
@@ -48,11 +48,11 @@ public class Imagen {
     }
 
     public Binary getArchivoImagen() {
-        return ArchivoImagen;
+        return archivoImagen;
     }
 
-    public void setImageData(Binary imageData) {
-        this.ArchivoImagen = imageData;
+    public void setArchivoImagen(Binary archivoImagen) {
+        this.archivoImagen = archivoImagen;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Imagen {
         sb.append("Imagen{");
         sb.append("id=").append(id);
         sb.append(", nombre=").append(nombre);
-        sb.append(", ArchivoImagen=").append(ArchivoImagen);
+        sb.append(", archivoImagen=").append(archivoImagen);
         sb.append('}');
         return sb.toString();
     }
