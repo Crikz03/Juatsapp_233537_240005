@@ -23,12 +23,10 @@ import utilidades.Encriptador;
 public class UsuarioDAO implements IUsuarioDAO {
 
     private final MongoCollection<Usuario> coleccionUsuarios;
-    private final DireccionDAO direcdao;
     private final ImagenDAO imadao;
 
     public UsuarioDAO() {
         this.coleccionUsuarios = ConexionMongoDB.getDatabase().getCollection("usuarios", Usuario.class);
-        this.direcdao = new DireccionDAO();
         this.imadao = new ImagenDAO();
     }
 
@@ -59,7 +57,6 @@ public class UsuarioDAO implements IUsuarioDAO {
 
             Document update = new Document("$set", updateContenido);
 
-            direcdao.actualizar(usuario.getDireccion());
             coleccionUsuarios.updateOne(filter, update);
         } catch (MongoException e) {
             throw new PersistenciaException("Error al actualizar el usuario con id: " + usuario.getId());
