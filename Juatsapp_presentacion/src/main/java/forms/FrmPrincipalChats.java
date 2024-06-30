@@ -241,7 +241,7 @@ public class FrmPrincipalChats extends javax.swing.JFrame {
 
         Background1.add(pnChatActivo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 710, 450));
 
-        pnNavBar1.setBackground(new java.awt.Color(102, 255, 102));
+        pnNavBar1.setBackground(new java.awt.Color(0, 145, 26));
 
         btnPerfil1.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         btnPerfil1.setForeground(new java.awt.Color(0, 153, 153));
