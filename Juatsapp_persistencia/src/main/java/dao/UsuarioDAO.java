@@ -24,7 +24,7 @@ import utilidades.Encriptador;
 public class UsuarioDAO implements IUsuarioDAO {
 
     private final MongoCollection<Usuario> coleccionUsuarios;
-    private final IimagenDAO imadao;
+    private final ImagenDAO imadao;
 
     public UsuarioDAO() {
         this.coleccionUsuarios = ConexionMongoDB.getDatabase().getCollection("usuarios", Usuario.class);
