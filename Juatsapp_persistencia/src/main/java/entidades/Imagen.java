@@ -20,6 +20,12 @@ public class Imagen {
     public Imagen() {
     }
 
+    public Imagen(ObjectId id, String nombre, Binary ArchivoImagen) {
+        this.id = id;
+        this.nombre = nombre;
+        this.ArchivoImagen = ArchivoImagen;
+    }
+
     public Imagen(String nombre, Binary ArchivoImagen) {
         this.nombre = nombre;
         this.ArchivoImagen = ArchivoImagen;
