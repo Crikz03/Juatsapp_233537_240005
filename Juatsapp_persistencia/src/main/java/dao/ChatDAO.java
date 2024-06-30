@@ -35,6 +35,7 @@ public class ChatDAO implements IChatDAO {
     @Override
     public void guardar(Chat chat) throws PersistenciaException {
 <<<<<<< HEAD
+<<<<<<< HEAD
         try (ConexionMongoDB conexionMongoDB = MongoClientFactory.createConexionMongoDB(connectionString, databaseName)) {
             MongoCollection<Chat> coleccionChats = conexionMongoDB.getDatabase().getCollection("chats", Chat.class);
             coleccionChats.insertOne(chat);
@@ -42,6 +43,11 @@ public class ChatDAO implements IChatDAO {
         try {
             this.coleccionChats.insertOne(chat);
 >>>>>>> parent of 004bf59 (Merge branch 'main' into Chris)
+=======
+        try (ConexionMongoDB conexionMongoDB = MongoClientFactory.createConexionMongoDB(connectionString, databaseName)) {
+            MongoCollection<Chat> coleccionChats = conexionMongoDB.getDatabase().getCollection("chats", Chat.class);
+            coleccionChats.insertOne(chat);
+>>>>>>> parent of bd69515 (Revert "Merge branch 'Carlos' into Chris")
         } catch (MongoException e) {
             throw new PersistenciaException("No se pudo agregar el chat con: " + chat.getId() + "a la coleccion.");
         }
@@ -50,6 +56,9 @@ public class ChatDAO implements IChatDAO {
     @Override
     public void actualizar(Chat chat) throws PersistenciaException {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of bd69515 (Revert "Merge branch 'Carlos' into Chris")
         try (ConexionMongoDB conexionMongoDB = MongoClientFactory.createConexionMongoDB(connectionString, databaseName)) {
             MongoCollection<Chat> coleccionChats = conexionMongoDB.getDatabase().getCollection("chats", Chat.class);
             Bson filter = Filters.eq("_id", chat.getId());
@@ -57,9 +66,12 @@ public class ChatDAO implements IChatDAO {
         } catch (MongoException e) {
             throw new PersistenciaException("No se pudo actualizar el chat con id: " + chat.getId());
         }
+<<<<<<< HEAD
 =======
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 >>>>>>> parent of 004bf59 (Merge branch 'main' into Chris)
+=======
+>>>>>>> parent of bd69515 (Revert "Merge branch 'Carlos' into Chris")
     }
 
     @Override
@@ -105,8 +117,12 @@ public class ChatDAO implements IChatDAO {
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 
 }
 >>>>>>> parent of 004bf59 (Merge branch 'main' into Chris)
+=======
+}
+>>>>>>> parent of bd69515 (Revert "Merge branch 'Carlos' into Chris")

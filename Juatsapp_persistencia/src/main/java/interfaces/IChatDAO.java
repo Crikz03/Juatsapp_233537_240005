@@ -7,6 +7,7 @@ package interfaces;
 import entidades.Chat;
 import excepciones.PersistenciaException;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -23,4 +24,6 @@ public interface IChatDAO {
     public List<Chat> consultarTodos() throws PersistenciaException;
 
     public Chat consultarPorId(String id) throws PersistenciaException;
+
+    public void pushMensaje(ObjectId chatId, ObjectId mensajeId) throws PersistenciaException;
 }
