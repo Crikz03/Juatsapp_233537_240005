@@ -4,6 +4,9 @@ interfaces\IMensajeDAO.class
 dao\ImagenDAO.class
 excepciones\PersistenciaException.class
 conexion\ConexionMongoDB.class
+dao\DireccionDAO.class
+interfaces\IDireccionDAO.class
+entidades\Chat.class
 pruebaTemporal\MensajeChatPrueba.class
 entidades\Chat.class
 interfaces\IimagenDAO.class
@@ -12,11 +15,11 @@ pruebaTemporal\UsuarioPrueba.class
 entidades\Direccion.class
 utilidades\Encriptador.class
 dao\UsuarioDAO.class
-excepciones\ConexionException.class
 interfaces\IUsuarioDAO.class
 entidades\Mensaje.class
 utilidades\Genero.class
 dao\ChatDAO.class
+interfaces\ImagenDAO.class
 entidades\Usuario.class
 entidades\Imagen.class
 =======

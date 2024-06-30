@@ -9,6 +9,7 @@ import com.mongodb.MongoException;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
+import excepciones.PersistenciaException;
 import org.bson.codecs.configuration.CodecRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
@@ -19,27 +20,18 @@ import org.bson.codecs.pojo.PojoCodecProvider;
  */
 public class ConexionMongoDB implements AutoCloseable {
 
-    private static MongoClient mongoClient = null;
+    private final MongoClient mongoClient;
+    private final CodecRegistry codecRegistry;
+    private final String databaseName;
 
-    private static final String url = "mongodb://localhost:27017";
-    private static final String DATABASE_NAME = "Juatsapp";
-
-    private ConexionMongoDB() {
+    public ConexionMongoDB(MongoClient mongoClient, CodecRegistry codecRegistry, String databaseName) {
+        this.mongoClient = mongoClient;
+        this.codecRegistry = codecRegistry;
+        this.databaseName = databaseName;
     }
 
-    public static MongoDatabase getDatabase() {
-        if (mongoClient == null) {
-            CodecRegistry pojoCodecRegistry = CodecRegistries.fromRegistries(
-                    MongoClientSettings.getDefaultCodecRegistry(),
-                    CodecRegistries.fromProviders(PojoCodecProvider.builder().automatic(true).build()));
-            MongoClientSettings clientSettings = MongoClientSettings.builder()
-                    .applyConnectionString(new com.mongodb.ConnectionString(url))
-                    .codecRegistry(pojoCodecRegistry).build();
-
-            mongoClient = MongoClients.create(clientSettings);
-            return mongoClient.getDatabase(DATABASE_NAME).withCodecRegistry(pojoCodecRegistry);
-        }
-        return mongoClient.getDatabase(DATABASE_NAME);
+    public MongoDatabase getDatabase() {
+        return mongoClient.getDatabase(databaseName).withCodecRegistry(codecRegistry);
     }
 
     @Override

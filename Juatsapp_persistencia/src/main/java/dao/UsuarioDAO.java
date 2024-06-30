@@ -5,16 +5,25 @@
 package dao;
 
 import com.mongodb.MongoException;
+
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
+import conexion.ConexionMongoDB;
+import conexion.MongoClientFactory;
+
 import com.mongodb.client.MongoCollection;
 import conexion.ConexionMongoDB;
+
 import entidades.Usuario;
 import excepciones.PersistenciaException;
 import interfaces.IUsuarioDAO;
 import java.util.ArrayList;
 import java.util.List;
 import org.bson.Document;
+
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
-import utilidades.Encriptador;
 
 /**
  *
@@ -22,27 +31,73 @@ import utilidades.Encriptador;
  */
 public class UsuarioDAO implements IUsuarioDAO {
 
-  private final MongoCollection<Usuario> coleccionUsuarios;
+    private final String connectionString;
+    private final String databaseName;
+
+    public UsuarioDAO(String connectionString, String databaseName) {
+        this.connectionString = connectionString;
+        this.databaseName = databaseName;
+
+import org.bson.types.ObjectId;
+import utilidades.Encriptador;
+
+/**
+ *
+ * @author Chris
+ */
+public class UsuarioDAO implements IUsuarioDAO {
+
+    private final MongoCollection<Usuario> coleccionUsuarios;
+    private final DireccionDAO direcdao;
     private final ImagenDAO imadao;
 
     public UsuarioDAO() {
         this.coleccionUsuarios = ConexionMongoDB.getDatabase().getCollection("usuarios", Usuario.class);
+        this.direcdao = new DireccionDAO();
         this.imadao = new ImagenDAO();
+
     }
 
     @Override
     public void guardar(Usuario usuario) throws PersistenciaException {
+
+        try (ConexionMongoDB conexionMongoDB = MongoClientFactory.createConexionMongoDB(connectionString, databaseName)) {
+            MongoCollection<Usuario> coleccionUsuarios = conexionMongoDB.getDatabase().getCollection("usuarios", Usuario.class);
+            coleccionUsuarios.insertOne(usuario);
+        } catch (MongoException e) {
+            throw new PersistenciaException("No se pudo agregar el usuario a la coleccion.");
+
         try {
             String hashedPassword = Encriptador.encriptarPassword(usuario.getContrasena());
             usuario.setContrasena(hashedPassword);
             this.coleccionUsuarios.insertOne(usuario);
         } catch (MongoException e) {
             throw new PersistenciaException("No se pudo agregar el usuario con: " + usuario.getId() + "a la coleccion.");
+
         }
     }
 
     @Override
     public void actualizar(Usuario usuario) throws PersistenciaException {
+
+        try (ConexionMongoDB conexionMongoDB = MongoClientFactory.createConexionMongoDB(connectionString, databaseName)) {
+            MongoCollection<Usuario> coleccionUsuarios = conexionMongoDB.getDatabase().getCollection("usuarios", Usuario.class);
+            Bson filter = Filters.eq("_id", usuario.getId());
+            coleccionUsuarios.replaceOne(filter, usuario);
+        } catch (MongoException e) {
+            throw new PersistenciaException("No se pudo actualizar el usuario.");
+        }
+    }
+
+    @Override
+    public Usuario consultarPorId(String id) throws PersistenciaException {
+        try (ConexionMongoDB conexionMongoDB = MongoClientFactory.createConexionMongoDB(connectionString, databaseName)) {
+            MongoCollection<Usuario> coleccionUsuarios = conexionMongoDB.getDatabase().getCollection("usuarios", Usuario.class);
+            Bson filter = Filters.eq("_id", new ObjectId(id));
+            return coleccionUsuarios.find(filter).first();
+        } catch (MongoException e) {
+            throw new PersistenciaException("No se pudo consultar el usuario con id: " + id);
+
         try {
             Document filter = new Document("_id", usuario.getId());
 
@@ -57,14 +112,26 @@ public class UsuarioDAO implements IUsuarioDAO {
 
             Document update = new Document("$set", updateContenido);
 
+            direcdao.actualizar(usuario.getDireccion());
             coleccionUsuarios.updateOne(filter, update);
         } catch (MongoException e) {
             throw new PersistenciaException("Error al actualizar el usuario con id: " + usuario.getId());
+
         }
     }
 
     @Override
     public List<Usuario> consultarTodos() throws PersistenciaException {
+
+        try (ConexionMongoDB conexionMongoDB = MongoClientFactory.createConexionMongoDB(connectionString, databaseName)) {
+            MongoCollection<Usuario> coleccionUsuarios = conexionMongoDB.getDatabase().getCollection("usuarios", Usuario.class);
+            FindIterable<Usuario> iterable = coleccionUsuarios.find();
+            return iterable.into(new ArrayList<>());
+        } catch (MongoException e) {
+            throw new PersistenciaException("No se pudo consultar todos los usuarios.");
+        }
+    }
+
         List<Usuario> listaUsuarios = new ArrayList<>();
         this.coleccionUsuarios.find().into(listaUsuarios);
         return listaUsuarios;
@@ -102,4 +169,5 @@ public class UsuarioDAO implements IUsuarioDAO {
         this.coleccionUsuarios.updateOne(new Document("_id", userId), updateQuery);
     }
 
-    }
+
+}
