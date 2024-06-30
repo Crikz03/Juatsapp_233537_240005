@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 interfaces\IChatDAO.class
 interfaces\IMensajeDAO.class
 dao\ImagenDAO.class
@@ -18,3 +19,5 @@ utilidades\Genero.class
 dao\ChatDAO.class
 entidades\Usuario.class
 entidades\Imagen.class
+=======
+>>>>>>> parent of 597f694 (Finalizacion de los dao y pruebas de estos mismos:))

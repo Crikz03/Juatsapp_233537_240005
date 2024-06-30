@@ -14,11 +14,11 @@ import java.util.List;
  */
 public interface IMensajeDAO {
 
-    public void guardar(Mensaje mensaje) throws PersistenciaException;
+    public void guardar(Mensaje Mensaje) throws PersistenciaException;
 
-    public void actualizar(Mensaje mensaje) throws PersistenciaException;
+    public void actualizar(Mensaje Mensaje) throws PersistenciaException;
 
-    public void Eliminar(Mensaje mensaje) throws PersistenciaException;
+    public void Eliminar(Mensaje Mensaje) throws PersistenciaException;
 
     public List<Mensaje> consultarTodos() throws PersistenciaException;
     

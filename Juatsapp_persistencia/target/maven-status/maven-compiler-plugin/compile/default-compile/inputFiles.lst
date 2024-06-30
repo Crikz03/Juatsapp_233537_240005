@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\interfaces\IUsuarioDAO.java
 C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\entidades\Direccion.java
 C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\excepciones\ConexionException.java
@@ -18,3 +19,13 @@ C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src
 C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\pruebaTemporal\MensajeChatPrueba.java
 C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\entidades\Mensaje.java
 C:\Users\Chris\Documents\GitHub\Juatsapp_233537_240005\Juatsapp_persistencia\src\main\java\dao\ChatDAO.java
+=======
+C:\Users\Chris\Documents\NetBeansProjects\Juatsapp_persistencia\src\main\java\entidades\Direccion.java
+C:\Users\Chris\Documents\NetBeansProjects\Juatsapp_persistencia\src\main\java\entidades\Mensaje.java
+C:\Users\Chris\Documents\NetBeansProjects\Juatsapp_persistencia\src\main\java\entidades\Usuario.java
+C:\Users\Chris\Documents\NetBeansProjects\Juatsapp_persistencia\src\main\java\entidades\Imagen.java
+C:\Users\Chris\Documents\NetBeansProjects\Juatsapp_persistencia\src\main\java\utilidades\FormatoFechas.java
+C:\Users\Chris\Documents\NetBeansProjects\Juatsapp_persistencia\src\main\java\utilidades\Genero.java
+C:\Users\Chris\Documents\NetBeansProjects\Juatsapp_persistencia\src\main\java\Conexion\ConexionMongoDB.java
+C:\Users\Chris\Documents\NetBeansProjects\Juatsapp_persistencia\src\main\java\entidades\Chat.java
+>>>>>>> parent of 597f694 (Finalizacion de los dao y pruebas de estos mismos:))

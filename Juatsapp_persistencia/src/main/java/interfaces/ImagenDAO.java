@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Carlos 233537, Chris 240005
  */
-public interface IimagenDAO {
+public interface ImagenDAO {
 
     public void guardar(Imagen imagen) throws PersistenciaException;
 
