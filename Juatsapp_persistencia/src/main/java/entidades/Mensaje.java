@@ -29,6 +29,12 @@ public class Mensaje {
         this.hora = hora;
     }
 
+    public Mensaje(ObjectId usuarioReceptor, String contenidoMensaje, LocalDateTime hora) {
+        this.usuarioReceptor = usuarioReceptor;
+        this.contenidoMensaje = contenidoMensaje;
+        this.hora = hora;
+    }
+
     public ObjectId getId() {
         return id;
     }

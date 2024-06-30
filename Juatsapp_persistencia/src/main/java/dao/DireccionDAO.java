@@ -38,7 +38,21 @@ public class DireccionDAO implements IDireccionDAO {
 
     @Override
     public void actualizar(Direccion direccion) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            Document filter = new Document("numero", direccion.getNumero());
+
+            Document actualiza = new Document();
+            actualiza.append("calle", direccion.getCalle());
+            actualiza.append("numero", direccion.getNumero());
+            actualiza.append("colonia", direccion.getColonia());
+            actualiza.append("codigoPostal", direccion.getCodigoPostal());
+
+            Document update = new Document("$set", actualiza);
+
+            coleccionDirecciones.updateOne(filter, update);
+        } catch (MongoException e) {
+            throw new PersistenciaException("Error al actualizar la dirección con numero: " + direccion.getNumero());
+        }
     }
 
     @Override

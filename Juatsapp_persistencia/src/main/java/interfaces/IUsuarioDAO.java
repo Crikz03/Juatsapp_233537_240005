@@ -14,9 +14,9 @@ import java.util.List;
  */
 public interface IUsuarioDAO {
 
-    public void guardar(Usuario Usuario) throws PersistenciaException;
+    public void guardar(Usuario msuario) throws PersistenciaException;
 
-    public void actualizar(Usuario Usuario) throws PersistenciaException;
+    public void actualizar(Usuario msuario) throws PersistenciaException;
 
     public List<Usuario> consultarTodos() throws PersistenciaException;
 
