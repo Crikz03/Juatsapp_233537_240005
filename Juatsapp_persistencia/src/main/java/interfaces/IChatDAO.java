@@ -19,7 +19,7 @@ public interface IChatDAO {
 
     public void actualizar(Chat chat) throws PersistenciaException;
 
-    public void eliminar(Chat chat) throws PersistenciaException;
+    public void Eliminar(Chat chat) throws PersistenciaException;
 
     public List<Chat> consultarTodos() throws PersistenciaException;
 
