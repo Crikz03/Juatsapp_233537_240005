@@ -20,25 +20,31 @@ import org.bson.codecs.pojo.PojoCodecProvider;
  */
 public class ConexionMongoDB implements AutoCloseable {
 
-    private final MongoClient mongoClient;
-    private final CodecRegistry codecRegistry;
-    private final String databaseName;
+    private static MongoClient mongoClient = null;
 
-    public ConexionMongoDB(MongoClient mongoClient, CodecRegistry codecRegistry, String databaseName) {
-        this.mongoClient = mongoClient;
-        this.codecRegistry = codecRegistry;
-        this.databaseName = databaseName;
+    private static final String url = "mongodb://localhost:27017";
+    private static final String DATABASE_NAME = "Juatsapp";
+
+    private ConexionMongoDB() {
     }
 
-    public MongoDatabase getDatabase() {
-        return mongoClient.getDatabase(databaseName).withCodecRegistry(codecRegistry);
-<<<<<<< HEAD
-=======
+    public static MongoDatabase getDatabase() {
+        if (mongoClient == null) {
+            CodecRegistry pojoCodecRegistry = CodecRegistries.fromRegistries(
+                    MongoClientSettings.getDefaultCodecRegistry(),
+                    CodecRegistries.fromProviders(PojoCodecProvider.builder().automatic(true).build()));
+            MongoClientSettings clientSettings = MongoClientSettings.builder()
+                    .applyConnectionString(new com.mongodb.ConnectionString(url))
+                    .codecRegistry(pojoCodecRegistry).build();
+
+            mongoClient = MongoClients.create(clientSettings);
+            return mongoClient.getDatabase(DATABASE_NAME).withCodecRegistry(pojoCodecRegistry);
+        }
+        return mongoClient.getDatabase(DATABASE_NAME);
     }
 
     @Override
     public void close() {
         mongoClient.close();
->>>>>>> parent of bd69515 (Revert "Merge branch 'Carlos' into Chris")
     }
 }
