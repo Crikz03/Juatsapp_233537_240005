@@ -11,12 +11,5 @@
         <maven.compiler.target>21</maven.compiler.target>
         <exec.mainClass>com.mycompany.juastapp_negocio.Juastapp_negocio</exec.mainClass>
     </properties>
-    <dependencies>
-    <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-beanutils</artifactId>
-        <version>1.9.4</version>
-    </dependency>
-</dependencies>
 
 </project>
