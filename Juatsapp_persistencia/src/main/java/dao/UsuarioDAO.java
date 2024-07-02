@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.bson.Document;
 import org.bson.types.ObjectId;
-import utilidades.Encriptador;
 
 /**
  *
@@ -33,8 +32,6 @@ public class UsuarioDAO implements IUsuarioDAO {
     @Override
     public void guardar(Usuario usuario) throws PersistenciaException {
         try {
-            String hashedPassword = Encriptador.encriptarPassword(usuario.getContrasena());
-            usuario.setContrasena(hashedPassword);
             this.coleccionUsuarios.insertOne(usuario);
         } catch (MongoException e) {
             throw new PersistenciaException("No se pudo agregar el usuario con: " + usuario.getId() + "a la coleccion.");
