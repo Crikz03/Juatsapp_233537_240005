@@ -4,12 +4,14 @@ dao\ImagenDAO.class
 excepciones\PersistenciaException.class
 conexion\ConexionMongoDB.class
 pruebaTemporal\MensajeChatPrueba.class
+utilidades\GestorImagenesMongo.class
 entidades\Chat.class
 interfaces\IimagenDAO.class
 dao\MensajeDAO.class
 pruebaTemporal\UsuarioPrueba.class
 entidades\Direccion.class
 utilidades\Encriptador.class
+utilidades\GestorImagenesMongo$SizeImage.class
 dao\UsuarioDAO.class
 excepciones\ConexionException.class
 interfaces\IUsuarioDAO.class

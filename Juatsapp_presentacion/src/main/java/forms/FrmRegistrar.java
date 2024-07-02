@@ -4,17 +4,27 @@
  */
 package forms;
 
+import dtos.UsuarioDTO;
+import interfaces.ICrudUsuarioBO;
+import java.time.LocalDateTime;
+import javax.swing.JOptionPane;
+import negocio.CrudUsuarioBO;
+import utilidades.Genero;
+
 /**
  *
  * @author eljulls
  */
 public class FrmRegistrar extends javax.swing.JFrame {
 
+    ICrudUsuarioBO crud;
+
     /**
      * Creates new form FrmRegistrar
      */
     public FrmRegistrar() {
         initComponents();
+        this.crud = new CrudUsuarioBO();
         setLocationRelativeTo(this);
     }
 
@@ -32,19 +42,19 @@ public class FrmRegistrar extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNumero = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        txtNombres = new javax.swing.JTextField();
+        txtApellidoP = new javax.swing.JTextField();
+        txtApellidoM = new javax.swing.JTextField();
+        bRegistrarse = new javax.swing.JButton();
+        txtContraseña1 = new javax.swing.JPasswordField();
+        txtContraseña = new javax.swing.JPasswordField();
         datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
         jLabel2 = new javax.swing.JLabel();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        bNoBinario = new javax.swing.JRadioButton();
+        bMasculino = new javax.swing.JRadioButton();
+        bFemenino = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -62,23 +72,23 @@ public class FrmRegistrar extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField1.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField1.setText("Numero");
-        jTextField1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, new java.awt.Color(51, 51, 51), java.awt.Color.white));
+        txtNumero.setText("Numero");
+        txtNumero.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, new java.awt.Color(51, 51, 51), java.awt.Color.white));
+        txtNumero.setForeground(new java.awt.Color(153, 153, 153));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(14, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -86,17 +96,17 @@ public class FrmRegistrar extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField2.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField2.setText("Nombre");
-        jTextField2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, new java.awt.Color(51, 51, 51), java.awt.Color.white));
+        txtNombres.setText("Nombres");
+        txtNombres.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, new java.awt.Color(51, 51, 51), java.awt.Color.white));
+        txtNombres.setForeground(new java.awt.Color(153, 153, 153));
 
-        jTextField3.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField3.setText("Apellido Paterno");
-        jTextField3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, new java.awt.Color(51, 51, 51), java.awt.Color.white));
+        txtApellidoP.setText("Apellido Paterno");
+        txtApellidoP.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, new java.awt.Color(51, 51, 51), java.awt.Color.white));
+        txtApellidoP.setForeground(new java.awt.Color(153, 153, 153));
 
-        jTextField4.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField4.setText("Apellido Materno");
-        jTextField4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, new java.awt.Color(51, 51, 51), java.awt.Color.white));
+        txtApellidoM.setText("Apellido Materno");
+        txtApellidoM.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, new java.awt.Color(51, 51, 51), java.awt.Color.white));
+        txtApellidoM.setForeground(new java.awt.Color(153, 153, 153));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -105,55 +115,55 @@ public class FrmRegistrar extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField3)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE))
+                    .addComponent(txtNombres)
+                    .addComponent(txtApellidoP)
+                    .addComponent(txtApellidoM, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtApellidoP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtApellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 170, 310, 230));
 
-        jButton1.setBackground(new java.awt.Color(0, 145, 26));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Registrarse");
-        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 0, true));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bRegistrarse.setText("Registrarse");
+        bRegistrarse.setBackground(new java.awt.Color(0, 145, 26));
+        bRegistrarse.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 0, true));
+        bRegistrarse.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        bRegistrarse.setForeground(new java.awt.Color(255, 255, 255));
+        bRegistrarse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bRegistrarseActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 530, 300, 50));
+        jPanel2.add(bRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 530, 300, 50));
 
-        jPasswordField1.setForeground(new java.awt.Color(153, 153, 153));
-        jPasswordField1.setText("Contraseña");
-        jPasswordField1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, new java.awt.Color(102, 102, 102), java.awt.Color.white));
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        txtContraseña1.setText("Contraseña");
+        txtContraseña1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, new java.awt.Color(102, 102, 102), java.awt.Color.white));
+        txtContraseña1.setForeground(new java.awt.Color(153, 153, 153));
+        txtContraseña1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                txtContraseña1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 260, 40));
+        jPanel2.add(txtContraseña1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 260, 40));
 
-        jPasswordField2.setForeground(new java.awt.Color(153, 153, 153));
-        jPasswordField2.setText("Contraseña");
-        jPasswordField2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, new java.awt.Color(102, 102, 102), java.awt.Color.white));
-        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
+        txtContraseña.setText("Contraseña");
+        txtContraseña.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, new java.awt.Color(102, 102, 102), java.awt.Color.white));
+        txtContraseña.setForeground(new java.awt.Color(153, 153, 153));
+        txtContraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField2ActionPerformed(evt);
+                txtContraseñaActionPerformed(evt);
             }
         });
-        jPanel2.add(jPasswordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 270, 260, 40));
+        jPanel2.add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 270, 260, 40));
 
         datePicker1.setBackground(new java.awt.Color(204, 255, 204));
         datePicker1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 204, 51), new java.awt.Color(0, 204, 51), new java.awt.Color(0, 204, 51), new java.awt.Color(0, 204, 51)));
@@ -164,27 +174,27 @@ public class FrmRegistrar extends javax.swing.JFrame {
         jLabel2.setText("Sexo:");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 430, 40, -1));
 
-        jRadioButton2.setForeground(new java.awt.Color(102, 102, 102));
-        jRadioButton2.setText("No Binario");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        bNoBinario.setText("No Binario");
+        bNoBinario.setForeground(new java.awt.Color(102, 102, 102));
+        bNoBinario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                bNoBinarioActionPerformed(evt);
             }
         });
-        jPanel2.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 460, -1, -1));
+        jPanel2.add(bNoBinario, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 460, -1, -1));
 
-        jRadioButton1.setForeground(new java.awt.Color(102, 102, 102));
-        jRadioButton1.setText("Masculino");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        bMasculino.setText("Masculino");
+        bMasculino.setForeground(new java.awt.Color(102, 102, 102));
+        bMasculino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                bMasculinoActionPerformed(evt);
             }
         });
-        jPanel2.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 460, -1, -1));
+        jPanel2.add(bMasculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 460, -1, -1));
 
-        jRadioButton3.setForeground(new java.awt.Color(102, 102, 102));
-        jRadioButton3.setText("Femenino");
-        jPanel2.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 460, -1, -1));
+        bFemenino.setText("Femenino");
+        bFemenino.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel2.add(bFemenino, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 460, -1, -1));
 
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Fecha de Nacimiento");
@@ -224,26 +234,75 @@ public class FrmRegistrar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new FrmRegistrar().setVisible(true);
+    private void bRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegistrarseActionPerformed
+        boolean esValido = validarTelefono(txtNumero.getText());
+        boolean contrasenaValida = validarContrasena(txtContraseña.getText());
+
+        if (txtNombres.getText().trim().isEmpty()
+                || txtApellidoP.getText().trim().isEmpty()
+                || txtApellidoM.getText().trim().isEmpty()
+                || txtContraseña.getText().trim().isEmpty()
+                || txtContraseña1.getText().trim().isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String contraseña = new String(txtContraseña.getPassword()).trim();
+        String confirmarContraseña = new String(txtContraseña1.getPassword()).trim();
+
+        if (!contraseña.equals(confirmarContraseña)) {
+            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden.", "Error de contraseña", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        UsuarioDTO usuario = new UsuarioDTO();
+        usuario.setTelefono(txtNumero.getText());
+        usuario.setNombres(txtNombres.getText());
+        usuario.setApellidoPaterno(txtApellidoP.getText());
+        usuario.setApellidoMaterno(txtApellidoM.getText());
+        usuario.setContrasena(txtContraseña.getText());
+        usuario.setSexo(Genero.Masculino);
+        LocalDateTime localDateTime = datePicker1.getDate().atStartOfDay();
+        usuario.setFechaNacimiento(localDateTime);
+
+        new FrmAgregarFotoRegistro(usuario).setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
 
-    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField2ActionPerformed
+    }//GEN-LAST:event_bRegistrarseActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    private boolean validarTelefono(String telefono) {
+        // Expresión regular para validar que solo contenga dígitos
+        String regex = "^\\d{10}$";
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // Verificar si el teléfono coincide con la expresión regular
+        return telefono.matches(regex);
+    }
+
+    private boolean validarContrasena(String contrasena) {
+        // Expresión regular para validar la contraseña
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&/\\-_ñ°+\\]\\['¿.,])[A-Za-z\\d@$!%*?&/\\-_ñ°+\\]\\['¿.,]{8,}$";
+
+        // Verificar si la contraseña coincide con la expresión regular
+        return contrasena.matches(regex);
+    }
+
+    private void txtContraseña1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseña1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_txtContraseña1ActionPerformed
+
+    private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContraseñaActionPerformed
+
+    private void bMasculinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMasculinoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bMasculinoActionPerformed
+
+    private void bNoBinarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNoBinarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bNoBinarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -281,9 +340,12 @@ public class FrmRegistrar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton bFemenino;
+    private javax.swing.JRadioButton bMasculino;
+    private javax.swing.JRadioButton bNoBinario;
+    private javax.swing.JButton bRegistrarse;
     private javax.swing.ButtonGroup buttonGroup1;
     private com.github.lgooddatepicker.components.DatePicker datePicker1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -293,14 +355,11 @@ public class FrmRegistrar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField txtApellidoM;
+    private javax.swing.JTextField txtApellidoP;
+    private javax.swing.JPasswordField txtContraseña;
+    private javax.swing.JPasswordField txtContraseña1;
+    private javax.swing.JTextField txtNombres;
+    private javax.swing.JTextField txtNumero;
     // End of variables declaration//GEN-END:variables
 }
