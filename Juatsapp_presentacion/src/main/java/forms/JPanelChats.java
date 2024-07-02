@@ -4,6 +4,9 @@
  */
 package forms;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 /**
@@ -12,13 +15,30 @@ import javax.swing.JButton;
  */
 public class JPanelChats extends javax.swing.JPanel {
 
-    /**
-     * Creates new form JPanelChats
-     */
+    private Image imagenDeFondo;
+
     public JPanelChats() {
-        initComponents();
+          initComponents();
+        cargarImagenDeFondo();
     }
 
+    private void cargarImagenDeFondo() {
+        try {
+            imagenDeFondo = new ImageIcon(getClass().getResource("/fondo.jpg")).getImage();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (imagenDeFondo != null) {
+            g.drawImage(imagenDeFondo, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
+
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,7 +71,7 @@ public class JPanelChats extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(151, 151, 151))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 1096, Short.MAX_VALUE)
+                .addGap(0, 1099, Short.MAX_VALUE)
                 .addComponent(toggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(68, 68, 68)
@@ -65,7 +85,7 @@ public class JPanelChats extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(113, 113, 113)
                 .addComponent(toggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
