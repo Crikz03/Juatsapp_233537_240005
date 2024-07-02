@@ -12,6 +12,7 @@ import java.lang.reflect.Field;
  */
 public class ConvertidorGeneral {
 
+    // Método genérico para convertir un DTO a una entidad (Mismos Nombres)
     public static <D, E> E convertidorEntidad(D dto, Class<E> entityClass) {
         try {
             E entidad = entityClass.getDeclaredConstructor().newInstance();
