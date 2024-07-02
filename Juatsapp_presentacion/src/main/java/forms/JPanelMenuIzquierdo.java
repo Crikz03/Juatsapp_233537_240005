@@ -4,6 +4,10 @@
  */
 package forms;
 
+import java.awt.Dimension;
+import net.miginfocom.swing.MigLayout;
+import utilerias.ScrollBar;
+
 /**
  *
  * @author eljulls
@@ -15,6 +19,17 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
      */
     public JPanelMenuIzquierdo() {
         initComponents();
+        listaMenu.setLayout(new MigLayout("fillx", "0[]0", "0[]0"));
+        jScrollPane1.setVerticalScrollBar(new ScrollBar());
+        
+        mostrarContactos();
+    }
+    
+    
+    private void mostrarContactos(){
+        for (int i = 0; i < 20; i++) {
+            listaMenu.add(new JPanelContacto("Contacto "+i),"wrap");
+        }
     }
 
     /**
@@ -32,16 +47,19 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
         menuButton5 = new utilerias.MenuButton();
         menuButton6 = new utilerias.MenuButton();
         jPanel1 = new javax.swing.JPanel();
-        jPanelContacto1 = new forms.JPanelContacto();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listaMenu = new javax.swing.JLayeredPane();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(246, 246, 246));
         setForeground(new java.awt.Color(239, 239, 244));
 
-        jLayeredPane1.setBackground(new java.awt.Color(255, 153, 204));
+        jLayeredPane1.setBackground(new java.awt.Color(246, 246, 246));
 
         menuButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chats.png"))); // NOI18N
+        menuButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/chatSeleccionado.png"))); // NOI18N
 
         menuButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Edit.png"))); // NOI18N
+        menuButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/iniciarSeleccionado.png"))); // NOI18N
         menuButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuButton1ActionPerformed(evt);
@@ -49,6 +67,7 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
         });
 
         menuButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Add.png"))); // NOI18N
+        menuButton5.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/nuevoSeleccionado.png"))); // NOI18N
         menuButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuButton5ActionPerformed(evt);
@@ -56,6 +75,7 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
         });
 
         menuButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/config.png"))); // NOI18N
+        menuButton6.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/ajustesSelccionado.png"))); // NOI18N
 
         jLayeredPane1.setLayer(menuButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(menuButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -75,7 +95,7 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
                 .addComponent(menuButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(menuButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,31 +104,49 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(menuButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(menuButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(menuButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(menuButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(menuButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(menuButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                    .addGap(2, 2, 2)
+                                    .addComponent(menuButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(8, 8, 8)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.setBackground(new java.awt.Color(239, 239, 244));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanelContacto1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        jScrollPane1.setBackground(new java.awt.Color(204, 255, 204));
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        listaMenu.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout listaMenuLayout = new javax.swing.GroupLayout(listaMenu);
+        listaMenu.setLayout(listaMenuLayout);
+        listaMenuLayout.setHorizontalGroup(
+            listaMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 262, Short.MAX_VALUE)
+        );
+        listaMenuLayout.setVerticalGroup(
+            listaMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(listaMenu);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelContacto1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelContacto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(558, Short.MAX_VALUE))
+                .addComponent(jScrollPane1))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -116,13 +154,13 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLayeredPane1)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -139,7 +177,8 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
-    private forms.JPanelContacto jPanelContacto1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLayeredPane listaMenu;
     private utilerias.MenuButton menuButton1;
     private utilerias.MenuButton menuButton2;
     private utilerias.MenuButton menuButton5;

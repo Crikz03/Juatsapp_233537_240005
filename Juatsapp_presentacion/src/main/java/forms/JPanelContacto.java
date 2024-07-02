@@ -4,7 +4,10 @@
  */
 package forms;
 
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import utilerias.CargarFonts;
 
 /**
@@ -16,16 +19,33 @@ public class JPanelContacto extends javax.swing.JPanel {
     /**
      * Creates new form JPanelContacto
      */
-    public JPanelContacto() {
+    public JPanelContacto(String nombre) {
         initComponents();
         aplicarFuentePersonalizada();
+        metodosIniciales();
+        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblNombre.setText(nombre);
     }
 
     private void aplicarFuentePersonalizada() {
         Font fuente = CargarFonts.cargarFonts("src/main/resources/SF-Pro-Text-Medium.ttf"); // Asegúrate de que la ruta sea correcta
         if (fuente != null) {
-            jLabel1.setFont(fuente.deriveFont(Font.PLAIN, 11)); // Ajusta el tamaño y el estilo de la fuente
+            lblNombre.setFont(fuente.deriveFont(Font.PLAIN, 11)); // Ajusta el tamaño y el estilo de la fuente
         }
+    }
+
+    private void metodosIniciales() {
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent me) {
+                setBackground(new Color(246, 246, 246));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent me) {
+                setBackground(new Color(255, 255, 255));
+            }
+        });
     }
 
     /**
@@ -38,16 +58,16 @@ public class JPanelContacto extends javax.swing.JPanel {
     private void initComponents() {
 
         imagenPerfiles1 = new utilerias.ImagenPerfiles();
-        jLabel1 = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
 
         imagenPerfiles1.setImagen(new javax.swing.ImageIcon(getClass().getResource("/prueba.jpg"))); // NOI18N
 
-        jLabel1.setText("Nombre Contacto");
+        lblNombre.setText("Nombre Contacto");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/contactoflecha.png"))); // NOI18N
         jButton1.setBorderPainted(false);
@@ -65,7 +85,7 @@ public class JPanelContacto extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                        .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                         .addGap(35, 35, 35))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -85,10 +105,10 @@ public class JPanelContacto extends javax.swing.JPanel {
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)))
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -96,7 +116,7 @@ public class JPanelContacto extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private utilerias.ImagenPerfiles imagenPerfiles1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblNombre;
     // End of variables declaration//GEN-END:variables
 }
