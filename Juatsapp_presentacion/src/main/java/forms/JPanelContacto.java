@@ -30,7 +30,7 @@ public class JPanelContacto extends javax.swing.JPanel {
     private void aplicarFuentePersonalizada() {
         Font fuente = CargarFonts.cargarFonts("src/main/resources/SF-Pro-Text-Medium.ttf"); // Asegúrate de que la ruta sea correcta
         if (fuente != null) {
-            lblNombre.setFont(fuente.deriveFont(Font.PLAIN, 11)); // Ajusta el tamaño y el estilo de la fuente
+            lblNombre.setFont(fuente.deriveFont(Font.PLAIN, 14)); // Ajusta el tamaño y el estilo de la fuente
         }
     }
 
@@ -66,6 +66,7 @@ public class JPanelContacto extends javax.swing.JPanel {
 
         imagenPerfiles1.setImagen(new javax.swing.ImageIcon(getClass().getResource("/prueba.jpg"))); // NOI18N
 
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombre.setText("Nombre Contacto");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/contactoflecha.png"))); // NOI18N

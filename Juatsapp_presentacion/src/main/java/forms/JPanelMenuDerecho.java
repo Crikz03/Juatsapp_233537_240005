@@ -29,7 +29,7 @@ public class JPanelMenuDerecho extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(102, 102, 255));
+        setBackground(new java.awt.Color(220, 248, 199));
 
         jLabel1.setText("MenuDer");
 

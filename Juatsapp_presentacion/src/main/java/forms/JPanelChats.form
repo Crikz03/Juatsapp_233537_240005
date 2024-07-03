@@ -31,9 +31,9 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanelChatArriba1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="jPanelChatCuerpo2" min="-2" pref="728" max="-2" attributes="0"/>
+              <Component id="jPanelChatCuerpo2" pref="728" max="32767" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="jPanelChatAbajo1" min="-2" pref="89" max="-2" attributes="0"/>
+              <Component id="jPanelChatAbajo1" min="-2" pref="83" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -41,9 +41,6 @@
   <SubComponents>
     <Container class="chat.JPanelChatArriba" name="jPanelChatArriba1">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="f6" green="f6" red="f6" type="rgb"/>
-        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
             <BevelBorder bevelType="1">

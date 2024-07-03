@@ -27,7 +27,7 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
     
     
     private void mostrarContactos(){
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 9; i++) {
             listaMenu.add(new JPanelContacto("Contacto "+i),"wrap");
         }
     }
@@ -123,6 +123,7 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         listaMenu.setBackground(new java.awt.Color(255, 255, 255));
+        listaMenu.setOpaque(true);
 
         javax.swing.GroupLayout listaMenuLayout = new javax.swing.GroupLayout(listaMenu);
         listaMenu.setLayout(listaMenuLayout);
