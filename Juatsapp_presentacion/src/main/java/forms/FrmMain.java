@@ -4,17 +4,46 @@
  */
 package forms;
 
+import dtos.ChatDTO;
+import dtos.UsuarioDTO;
+import excepciones.NegocioException;
+import interfaces.ICrudChatBO;
+import interfaces.ICrudUsuarioBO;
+import interfaces.IPusheaChatBO;
+import interfaces.IVerificaChatExistenteBO;
+import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import negocio.CrudChatBO;
+import negocio.CrudUsuarioBO;
+import negocio.PusheaChatBO;
+import negocio.VerificaChatExistenteBO;
+import utilerias.Dialogos;
+
 /**
  *
  * @author eljulls
  */
 public class FrmMain extends javax.swing.JFrame {
 
+    private UsuarioDTO usuarioIniciado;
+    private ICrudUsuarioBO crudUsuario;
+    private ICrudChatBO crudChat;
+    private IPusheaChatBO pushChat;
+    private IVerificaChatExistenteBO chatExistente;
+
     /**
      * Creates new form FrmMain
+     *
+     * @param usuarioIniciado
      */
-    public FrmMain() {
+    public FrmMain(UsuarioDTO usuarioIniciado) {
         initComponents();
+        this.usuarioIniciado = usuarioIniciado;
+        this.crudUsuario = new CrudUsuarioBO();
+        this.chatExistente = new VerificaChatExistenteBO();
+        this.crudChat = new CrudChatBO();
+        this.pushChat = new PusheaChatBO();
     }
 
     /**
@@ -56,39 +85,50 @@ public class FrmMain extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void nuevoChat() {
+        String telefono = Dialogos.pedirInputUsuario(
+                rootPane,
+                "Ingresa usuario",
+                "Usuario"
+        );
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmMain().setVisible(true);
+        if (telefono.equals(usuarioIniciado.getTelefono())) {
+            Dialogos.mostrarMensajeError(
+                    rootPane,
+                    "No puedes hablar contigo mismo."
+            );
+            return;
+        }
+
+        try {
+            UsuarioDTO usuarioReceptor = crudUsuario.consultaPorTelefono(telefono);
+
+            if (usuarioReceptor == null) {
+                Dialogos.mostrarMensajeError(rootPane, "No existe ese usuario.");
+                return;
             }
-        });
+            String idUsuarioReceptor = usuarioReceptor.getId();
+            String idUsuarioLoggeado = usuarioIniciado.getId();
+
+            boolean existeChat = chatExistente.verificarChatExistente(idUsuarioLoggeado, idUsuarioReceptor);
+            if (existeChat) {
+                Dialogos.mostrarMensajeError(rootPane, "Chat ya existe");
+                return;
+            }
+
+            ChatDTO chat = new ChatDTO();
+            chat.setEmisor(usuarioIniciado.getId());
+            chat.setReceptor(usuarioReceptor.getId());
+            chat.setFecha(LocalDateTime.now());
+
+            crudChat.Guardar(chat);
+
+            pushChat.pusheaChat(usuarioReceptor.getId(), chat.getId());
+            pushChat.pusheaChat(usuarioIniciado.getId(), chat.getId());
+        } catch (NegocioException e) {
+            Dialogos.mostrarMensajeError(rootPane, "Error al crear el chat, intentelo denuevo");
+        }
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

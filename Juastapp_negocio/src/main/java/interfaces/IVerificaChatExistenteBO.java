@@ -4,15 +4,13 @@
  */
 package interfaces;
 
-import dtos.UsuarioDTO;
 import excepciones.NegocioException;
 
 /**
  *
  * @author Chris
  */
-public interface IConsultaUsuarioPorTelefonoBO {
+public interface IVerificaChatExistenteBO {
 
-    public UsuarioDTO consultaPorTelefono(String telefono) throws NegocioException;
-
+    public boolean verificarChatExistente(String idEmisor, String idReceptor) throws NegocioException;
 }

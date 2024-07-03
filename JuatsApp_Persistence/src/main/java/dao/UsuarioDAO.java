@@ -93,7 +93,7 @@ public class UsuarioDAO implements IUsuarioDAO {
         }
     }
 
-    public void pushChat(ObjectId userId, ObjectId chatId) {
+    public void pushChat(String userId, String chatId) {
         Document updateQuery = new Document("$push", new Document("chats", chatId));
 
         this.coleccionUsuarios.updateOne(new Document("_id", userId), updateQuery);

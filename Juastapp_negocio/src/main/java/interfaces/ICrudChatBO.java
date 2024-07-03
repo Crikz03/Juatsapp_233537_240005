@@ -4,15 +4,11 @@
  */
 package interfaces;
 
-import dtos.UsuarioDTO;
-import excepciones.NegocioException;
-
 /**
  *
  * @author Chris
+ * @param <DTO>
  */
-public interface IConsultaUsuarioPorTelefonoBO {
-
-    public UsuarioDTO consultaPorTelefono(String telefono) throws NegocioException;
+public interface ICrudChatBO<DTO> extends IAgregaBO<DTO>, IActualizaBO<DTO>, IEliminaBO<DTO>, IConsultaTodoBO<DTO>, IConsultaPorIdBO<DTO> {
 
 }

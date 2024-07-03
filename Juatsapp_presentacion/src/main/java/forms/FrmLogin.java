@@ -228,7 +228,7 @@ public class FrmLogin extends javax.swing.JFrame {
     }
 
     private void iniciarSesion(UsuarioDTO usuario) {
-        new FrmMain().setVisible(true);
+        new FrmMain(usuario).setVisible(true);
         dispose();
     }
 

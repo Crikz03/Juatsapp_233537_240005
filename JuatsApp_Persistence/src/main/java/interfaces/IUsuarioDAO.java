@@ -7,6 +7,7 @@ package interfaces;
 import entidades.Usuario;
 import excepciones.PersistenciaException;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -23,5 +24,7 @@ public interface IUsuarioDAO {
     public Usuario consultarPorId(String id) throws PersistenciaException;
 
     public Usuario consultarPortelefono(String telefono) throws PersistenciaException;
+
+    public void pushChat(String userId, String chatId) throws PersistenciaException;
 
 }

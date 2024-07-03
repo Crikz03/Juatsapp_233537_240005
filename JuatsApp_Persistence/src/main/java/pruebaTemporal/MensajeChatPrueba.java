@@ -48,8 +48,8 @@ public class MensajeChatPrueba {
             // Insertar mensaje en el historial de mensajes del chat usando pushMensaje
             chatDAO.pushMensaje(chatId, mensajeId);
 
-            usuarioDAO.pushChat(usaurioEmisor, chatId);
-            usuarioDAO.pushChat(usuarioReceptor, chatId);
+            usuarioDAO.pushChat(usaurioEmisor.toString(), chatId.toString());
+            usuarioDAO.pushChat(usuarioReceptor.toString(), chatId.toString());
 
             System.out.println("Mensaje insertado en el historial de mensajes del chat.");
 

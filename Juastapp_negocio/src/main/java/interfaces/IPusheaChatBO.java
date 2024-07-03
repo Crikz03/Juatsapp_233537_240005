@@ -4,15 +4,14 @@
  */
 package interfaces;
 
-import dtos.UsuarioDTO;
 import excepciones.NegocioException;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author Chris
  */
-public interface IConsultaUsuarioPorTelefonoBO {
+public interface IPusheaChatBO {
 
-    public UsuarioDTO consultaPorTelefono(String telefono) throws NegocioException;
-
+    public void pusheaChat(String idUsuario, String idChat) throws NegocioException;
 }
