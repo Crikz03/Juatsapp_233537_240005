@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.juatsapp_presentacion;
+package com.mycompany.juatsapp_persistence;
 
 /**
  *
- * @author Chris
+ * @author eljulls
  */
-public class Juatsapp_presentacion {
+public class JuatsApp_Persistence {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
