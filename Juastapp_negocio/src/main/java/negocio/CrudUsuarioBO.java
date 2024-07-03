@@ -79,4 +79,19 @@ public class CrudUsuarioBO implements ICrudUsuarioBO<UsuarioDTO> {
         }
     }
 
+    @Override
+    public UsuarioDTO existeUsuario(String telefono) throws NegocioException {
+        try {
+            Usuario usuario = usuariodao.consultarPortelefono(telefono);
+
+            if (usuario == null) {
+                return null;
+            }
+            UsuarioDTO u = ConvertidorGeneral.convertidoraDTO(usuario, UsuarioDTO.class);
+            return u;
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Error al consultar el teléfono", e);
+        }
+    }
+
 }

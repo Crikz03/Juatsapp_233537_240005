@@ -5,6 +5,7 @@
 package forms;
 
 import dtos.UsuarioDTO;
+import excepciones.NegocioException;
 import interfaces.ICrudUsuarioBO;
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
@@ -235,16 +236,26 @@ public class FrmRegistrar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegistrarseActionPerformed
-        boolean esValido = validarTelefono(txtNumero.getText());
-        boolean contrasenaValida = validarContrasena(txtContraseña.getText());
-
+        // Validar campos vacíos
         if (txtNombres.getText().trim().isEmpty()
                 || txtApellidoP.getText().trim().isEmpty()
                 || txtApellidoM.getText().trim().isEmpty()
-                || txtContraseña.getText().trim().isEmpty()
-                || txtContraseña1.getText().trim().isEmpty()) {
+                || txtNumero.getText().trim().isEmpty()
+                || txtContraseña.getPassword().length == 0
+                || txtContraseña1.getPassword().length == 0
+                || datePicker1.getDate() == null) {
 
             JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!validarTelefono(txtNumero.getText())) {
+            JOptionPane.showMessageDialog(this, "El número de teléfono no es válido.", "Error de teléfono", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!validarContrasena(txtContraseña.getText())) {
+            JOptionPane.showMessageDialog(this, "La contraseña no cumple con los requisitos.", "Error de contraseña", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -256,20 +267,28 @@ public class FrmRegistrar extends javax.swing.JFrame {
             return;
         }
 
+        try {
+            if (crud.existeUsuario(txtNumero.getText()) != null) {
+                JOptionPane.showMessageDialog(this, "El número de teléfono ya está registrado.", "Error de teléfono", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (NegocioException e) {
+            JOptionPane.showMessageDialog(this, "Error al verificar el número de teléfono.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         UsuarioDTO usuario = new UsuarioDTO();
         usuario.setTelefono(txtNumero.getText());
         usuario.setNombres(txtNombres.getText());
         usuario.setApellidoPaterno(txtApellidoP.getText());
         usuario.setApellidoMaterno(txtApellidoM.getText());
-        usuario.setContrasena(txtContraseña.getText());
+        usuario.setContrasena(contraseña);
         usuario.setSexo(Genero.Masculino);
         LocalDateTime localDateTime = datePicker1.getDate().atStartOfDay();
         usuario.setFechaNacimiento(localDateTime);
 
         new FrmAgregarFotoRegistro(usuario).setVisible(true);
         dispose();
-
-
     }//GEN-LAST:event_bRegistrarseActionPerformed
 
     private boolean validarTelefono(String telefono) {

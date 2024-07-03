@@ -4,11 +4,14 @@
  */
 package interfaces;
 
+import excepciones.NegocioException;
+
 /**
  *
- * @author 
- * @param <DTO>
+ * @author Chris
  */
-public interface ICrudUsuarioBO<DTO> extends IAgregaBO<DTO>,IActualizaBO<DTO>,IConsultaTodoBO<DTO>, IConsultaPorIdBO<DTO>, IConsultaUsuarioPorTelefonoBO<DTO>, IExisteUsuarioBO<DTO> {
-    
+public interface IExisteUsuarioBO<DTO> {
+
+    public DTO existeUsuario(String telefono) throws NegocioException;
+
 }
