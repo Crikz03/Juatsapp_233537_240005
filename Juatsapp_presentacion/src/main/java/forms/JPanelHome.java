@@ -30,7 +30,7 @@ public class JPanelHome extends javax.swing.JPanel {
     public void MetodosIniciales() {
         setLayout(new BorderLayout());
         JPanelMenuIzquierdo panelIzquierdo = new JPanelMenuIzquierdo();
-        panelIzquierdo.setPreferredSize(new Dimension(250, Integer.MAX_VALUE));
+        panelIzquierdo.setPreferredSize(new Dimension(270, Integer.MAX_VALUE));
         this.add(panelIzquierdo, BorderLayout.LINE_START);
         panelChats = new JPanelChats();
         this.add(panelChats, BorderLayout.CENTER);

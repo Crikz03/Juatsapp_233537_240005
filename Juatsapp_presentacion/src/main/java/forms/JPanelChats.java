@@ -4,6 +4,9 @@
  */
 package forms;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 /**
@@ -12,13 +15,22 @@ import javax.swing.JButton;
  */
 public class JPanelChats extends javax.swing.JPanel {
 
-    /**
-     * Creates new form JPanelChats
-     */
+
     public JPanelChats() {
-        initComponents();
+          initComponents();
+        cargarImagenDeFondo();
     }
 
+    private void cargarImagenDeFondo() {
+        try {
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+  
+
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,45 +40,74 @@ public class JPanelChats extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jPanelChatArriba1 = new chat.JPanelChatArriba();
         toggleButton = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        imagenPerfiles1 = new utilerias.ImagenPerfiles();
+        jLabel1 = new javax.swing.JLabel();
+        jPanelChatAbajo1 = new chat.JPanelChatAbajo();
+        jPanelChatCuerpo2 = new chat.JPanelChatCuerpo();
 
         setBackground(new java.awt.Color(153, 255, 153));
 
-        jLabel1.setText("Chat");
+        jPanelChatArriba1.setBackground(new java.awt.Color(246, 246, 246));
+        jPanelChatArriba1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
 
         toggleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Back.png"))); // NOI18N
         toggleButton.setBorderPainted(false);
         toggleButton.setContentAreaFilled(false);
 
-        jTextField1.setText("jTextField1");
+        imagenPerfiles1.setImagen(new javax.swing.ImageIcon(getClass().getResource("/prueba.jpg"))); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("Nombre/Numero");
+
+        javax.swing.GroupLayout jPanelChatArriba1Layout = new javax.swing.GroupLayout(jPanelChatArriba1);
+        jPanelChatArriba1.setLayout(jPanelChatArriba1Layout);
+        jPanelChatArriba1Layout.setHorizontalGroup(
+            jPanelChatArriba1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelChatArriba1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(imagenPerfiles1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(toggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanelChatArriba1Layout.setVerticalGroup(
+            jPanelChatArriba1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelChatArriba1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelChatArriba1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelChatArriba1Layout.createSequentialGroup()
+                        .addComponent(imagenPerfiles1, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelChatArriba1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1))))
+            .addComponent(toggleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanelChatAbajo1.setBackground(new java.awt.Color(246, 246, 246));
+
+        jPanelChatCuerpo2.setBackground(new java.awt.Color(204, 255, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(151, 151, 151))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 1096, Short.MAX_VALUE)
-                .addComponent(toggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(jTextField1)
-                .addGap(58, 58, 58))
+            .addComponent(jPanelChatArriba1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelChatAbajo1, javax.swing.GroupLayout.DEFAULT_SIZE, 1131, Short.MAX_VALUE)
+            .addComponent(jPanelChatCuerpo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(188, 188, 188)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(113, 113, 113)
-                .addComponent(toggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanelChatArriba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanelChatCuerpo2, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanelChatAbajo1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -74,8 +115,11 @@ public class JPanelChats extends javax.swing.JPanel {
         return toggleButton;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private utilerias.ImagenPerfiles imagenPerfiles1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
+    private chat.JPanelChatAbajo jPanelChatAbajo1;
+    private chat.JPanelChatArriba jPanelChatArriba1;
+    private chat.JPanelChatCuerpo jPanelChatCuerpo2;
     private javax.swing.JButton toggleButton;
     // End of variables declaration//GEN-END:variables
 }
