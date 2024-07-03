@@ -86,7 +86,7 @@ public class FrmAgregarFotoRegistro extends javax.swing.JFrame {
             .addGap(0, 90, Short.MAX_VALUE)
         );
 
-        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 170, 90));
+        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 170, 90));
 
         bContinuar.setBackground(new java.awt.Color(0, 145, 26));
         bContinuar.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N

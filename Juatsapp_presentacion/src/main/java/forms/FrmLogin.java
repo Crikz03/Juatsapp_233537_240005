@@ -8,7 +8,7 @@ import dtos.UsuarioDTO;
 import excepciones.NegocioException;
 import interfaces.IiniciaSesionBO;
 import negocio.IniciaSesionBO;
-import utilidades.Dialogos;
+import utilerias.Dialogos;
 import utilidades.Encriptador;
 
 /**
@@ -159,7 +159,7 @@ public class FrmLogin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
         );
 
         pack();
@@ -228,7 +228,7 @@ public class FrmLogin extends javax.swing.JFrame {
     }
 
     private void iniciarSesion(UsuarioDTO usuario) {
-        new FrmPrincipalChats(usuario).setVisible(true);
+        new FrmMain().setVisible(true);
         dispose();
     }
 
