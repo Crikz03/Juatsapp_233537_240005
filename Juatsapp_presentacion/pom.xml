@@ -22,6 +22,11 @@
             <artifactId>miglayout-swing</artifactId>
             <version>5.2</version> <!-- Replace with the latest version -->
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Juastapp_negocio</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
