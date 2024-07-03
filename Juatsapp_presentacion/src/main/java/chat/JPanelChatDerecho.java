@@ -10,19 +10,19 @@ import java.awt.Color;
  *
  * @author eljulls
  */
-public class JPanelChatIzquierdo extends javax.swing.JLayeredPane {
+public class JPanelChatDerecho extends javax.swing.JLayeredPane {
 
     /**
      * Creates new form JPanelChatIzquierdo
      */
-    public JPanelChatIzquierdo() {
+    public JPanelChatDerecho() {
         initComponents();
-        jPanelMensajeDerecho1.setBackground(new Color(220, 248, 199));
+        jPanelMensaje2.setBackground(new Color(220, 248, 199));
 
     }
 
     public void setTexto(String texto) {
-        jPanelMensajeDerecho1.setTexto(texto);
+        jPanelMensaje2.setTexto(texto);
     }
 
     /**
@@ -34,32 +34,32 @@ public class JPanelChatIzquierdo extends javax.swing.JLayeredPane {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelMensajeDerecho1 = new chat.JPanelMensajeDerecho();
+        jPanelMensaje2 = new chat.JPanelMensajeIzquierdo();
 
         setBackground(java.awt.Color.green);
 
-        setLayer(jPanelMensajeDerecho1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(jPanelMensaje2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanelMensajeDerecho1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(336, 336, 336))
+                .addGap(321, 321, 321)
+                .addComponent(jPanelMensaje2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelMensajeDerecho1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelMensaje2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private chat.JPanelMensajeDerecho jPanelMensajeDerecho1;
+    private chat.JPanelMensajeIzquierdo jPanelMensaje2;
     // End of variables declaration//GEN-END:variables
 }

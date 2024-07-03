@@ -31,7 +31,7 @@ public class JPanelChatCuerpo extends javax.swing.JPanel {
 
         metodosIniciales();
         mensajeIzquierdo("hola");
-        mensajeIzquierdo("como estass");
+        mensajeDerecho("Como estasComo estassComo estassComo estassComo estassComo estassComo estassComo estassComo estasss");
         mensajeIzquierdo("brooooooooooooooooooooooooooooooo");
 
     }
@@ -56,6 +56,16 @@ public class JPanelChatCuerpo extends javax.swing.JPanel {
         jPanel2.repaint();
         jPanel2.revalidate();
     }
+    
+       public void mensajeDerecho(String textk) {
+        JPanelChatDerecho mensaje = new JPanelChatDerecho();
+        mensaje.setTexto(textk);
+        jPanel2.add(mensaje, "wrap, al right, w ::80%");
+        //  ::80% set max with 80%
+        jPanel2.repaint();
+        jPanel2.revalidate();
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
