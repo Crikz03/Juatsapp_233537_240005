@@ -8,13 +8,18 @@ package chat;
  *
  * @author eljulls
  */
-public class JPanelChatArriba extends javax.swing.JPanel {
+public class JPanelMensaje extends javax.swing.JPanel {
 
     /**
-     * Creates new form JPanelChatArriba
+     * Creates new form JPanelMensaje
      */
-    public JPanelChatArriba() {
+    public JPanelMensaje() {
         initComponents();
+        txtMensaje.setEditable(false);
+    }
+
+    public void setTexto(String texto) {
+        txtMensaje.setText(texto);
     }
 
     /**
@@ -26,21 +31,17 @@ public class JPanelChatArriba extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(246, 246, 246));
+        txtMensaje = new utilerias.JIMSendTextPane();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 781, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
-        );
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.PAGE_AXIS));
+
+        txtMensaje.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        txtMensaje.setMinimumSize(new java.awt.Dimension(1, 1));
+        add(txtMensaje);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private utilerias.JIMSendTextPane txtMensaje;
     // End of variables declaration//GEN-END:variables
 }

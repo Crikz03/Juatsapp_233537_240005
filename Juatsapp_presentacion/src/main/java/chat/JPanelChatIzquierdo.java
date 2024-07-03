@@ -8,13 +8,16 @@ package chat;
  *
  * @author eljulls
  */
-public class JPanelChatArriba extends javax.swing.JPanel {
+public class JPanelChatIzquierdo extends javax.swing.JLayeredPane {
 
     /**
-     * Creates new form JPanelChatArriba
+     * Creates new form JPanelChatIzquierdo
      */
-    public JPanelChatArriba() {
+    public JPanelChatIzquierdo() {
         initComponents();
+    }
+   public void setTexto(String texto) {
+      jPanelMensaje1.setTexto(texto);
     }
 
     /**
@@ -26,21 +29,29 @@ public class JPanelChatArriba extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(246, 246, 246));
+        jPanelMensaje1 = new chat.JPanelMensaje();
+
+        jPanelMensaje1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelMensaje1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 781, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanelMensaje1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(322, 322, 322))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanelMensaje1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private chat.JPanelMensaje jPanelMensaje1;
     // End of variables declaration//GEN-END:variables
 }

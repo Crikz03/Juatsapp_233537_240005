@@ -54,6 +54,7 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
         setForeground(new java.awt.Color(239, 239, 244));
 
         jLayeredPane1.setBackground(new java.awt.Color(246, 246, 246));
+        jLayeredPane1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
 
         menuButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chats.png"))); // NOI18N
         menuButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/chatSeleccionado.png"))); // NOI18N

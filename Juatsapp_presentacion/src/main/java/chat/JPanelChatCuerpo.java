@@ -5,9 +5,14 @@
 package chat;
 
 import forms.JPanelChats;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JScrollBar;
+import net.miginfocom.swing.MigLayout;
 
 /**
  *
@@ -15,12 +20,41 @@ import javax.swing.JButton;
  */
 public class JPanelChatCuerpo extends javax.swing.JPanel {
 
+    private Image imagenDeFondo;
+
     /**
      * Creates new form JPanelChatCuerpo
      */
     public JPanelChatCuerpo() {
         initComponents();
+        imagenDeFondo = new ImageIcon(getClass().getResource("/fondo.jpg")).getImage();
 
+        metodosIniciales();
+        mensajeIzquierdo("hola");
+        mensajeIzquierdo("como estass");
+        mensajeIzquierdo("brooooooooooooooooooooooooooooooo");
+
+    }
+
+    private void metodosIniciales() {
+        jScrollPane1.setVerticalScrollBar(new JScrollBar());
+        jPanel2.setLayout(new MigLayout("fillx"));
+    }
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (imagenDeFondo != null) {
+            g.drawImage(imagenDeFondo, 0, 0, jPanel2.getWidth(), jPanel2.getHeight(), jPanel2);
+        }
+    }
+
+    public void mensajeIzquierdo(String texto) {
+        JPanelChatIzquierdo mensaje = new JPanelChatIzquierdo();
+        mensaje.setTexto(texto);
+        jPanel2.add(mensaje, "wrap, w ::80%");
+        //  ::80% set max with 80%
+        jPanel2.repaint();
+        jPanel2.revalidate();
     }
 
     /**
@@ -41,7 +75,7 @@ public class JPanelChatCuerpo extends javax.swing.JPanel {
         jScrollPane1.setBorder(null);
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        jPanel2.setBackground(new java.awt.Color(255, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(239, 239, 244));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
