@@ -26,7 +26,7 @@ public class UsuarioDTO {
     private Genero sexo;
     private List<String> chats;
     private List<String> contactos;
-    private Imagen imagenPerfil;
+    private ImagenDTO imagenPerfil;
     private LocalDateTime fechaNacimiento;
     private Direccion direccion;
 
@@ -35,7 +35,7 @@ public class UsuarioDTO {
         this.contactos = new ArrayList<>();
     }
 
-    public UsuarioDTO(String telefono, String contrasena, String nombres, String apellidoPaterno, String apellidoMaterno, Genero sexo, Imagen imagenPerfil, LocalDateTime fechaNacimiento, Direccion direccion) {
+    public UsuarioDTO(String telefono, String contrasena, String nombres, String apellidoPaterno, String apellidoMaterno, Genero sexo, ImagenDTO imagenPerfil, LocalDateTime fechaNacimiento, Direccion direccion) {
         this.telefono = telefono;
         this.contrasena = contrasena;
         this.nombres = nombres;
@@ -121,11 +121,11 @@ public class UsuarioDTO {
         this.contactos = contactos;
     }
 
-    public Imagen getImagenPerfil() {
+    public ImagenDTO getImagenPerfil() {
         return imagenPerfil;
     }
 
-    public void setImagenPerfil(Imagen imagenPerfil) {
+    public void setImagenPerfil(ImagenDTO imagenPerfil) {
         this.imagenPerfil = imagenPerfil;
     }
 

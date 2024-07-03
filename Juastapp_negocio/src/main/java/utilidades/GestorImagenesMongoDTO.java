@@ -4,6 +4,8 @@
  */
 package utilidades;
 
+import convertidores.ConvertidorGeneral;
+import dtos.ImagenDTO;
 import entidades.Imagen;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -17,7 +19,7 @@ import org.bson.types.Binary;
  *
  * @author Chris
  */
-public final class GestorImagenesMongo {
+public class GestorImagenesMongoDTO {
 
     /**
      * Tamaño de la imagen.
@@ -49,11 +51,11 @@ public final class GestorImagenesMongo {
     /**
      * Ancho para imagen mediana.
      */
-    private static final int MEDIUM_WIDTH = 350;
+    private static final int MEDIUM_WIDTH = 200;
     /**
      * Largo para imagen mediana.
      */
-    private static final int MEDIUM_HEIGHT = 350;
+    private static final int MEDIUM_HEIGHT = 200;
 
     /**
      * Ancho para imagen grande.
@@ -64,7 +66,7 @@ public final class GestorImagenesMongo {
      */
     private static final int LARGE_HEIGHT = 600;
 
-    private GestorImagenesMongo() {
+    private GestorImagenesMongoDTO() {
         throw new IllegalStateException("Utility class");
     }
 
@@ -77,7 +79,7 @@ public final class GestorImagenesMongo {
      * @return El documento con la información de la imagen.
      * @throws IOException
      */
-    public static Imagen crearImagen(
+    public static ImagenDTO crearImagen(
             final String fileName,
             final File imageFile
     ) throws IOException {
@@ -88,8 +90,9 @@ public final class GestorImagenesMongo {
         Imagen imagenDocument = new Imagen();
         imagenDocument.setArchivoImagen(new Binary(imageData));
         imagenDocument.setNombre(fileName);
+        ImagenDTO imagenDTO = ConvertidorGeneral.convertidoraDTO(imagenDocument, ImagenDTO.class);
 
-        return imagenDocument;
+        return imagenDTO;
     }
 
     /**
@@ -101,7 +104,7 @@ public final class GestorImagenesMongo {
      * @return El icono con las dimensiones pedidas.
      */
     public static ImageIcon getImageIcon(
-            final Imagen imageDocument,
+            final ImagenDTO imageDocument,
             final SizeImage size) {
 
         Binary imageData = imageDocument.getArchivoImagen();
@@ -166,5 +169,4 @@ public final class GestorImagenesMongo {
         }
         return data;
     }
-
 }

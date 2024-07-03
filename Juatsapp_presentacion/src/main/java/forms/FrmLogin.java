@@ -7,8 +7,6 @@ package forms;
 import dtos.UsuarioDTO;
 import excepciones.NegocioException;
 import interfaces.IiniciaSesionBO;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import negocio.IniciaSesionBO;
 import utilidades.Dialogos;
 import utilidades.Encriptador;
