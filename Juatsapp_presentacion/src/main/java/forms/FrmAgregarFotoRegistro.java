@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -34,6 +35,7 @@ public class FrmAgregarFotoRegistro extends javax.swing.JFrame {
     private ICrudImagenBO crudImagen;
     private UsuarioDTO usuarioRegistrando;
     private ICrudUsuarioBO crud;
+    private Icon imagenDefault;
 
     /**
      * Creates new form FrmAgregarFotoRegistro
@@ -46,6 +48,7 @@ public class FrmAgregarFotoRegistro extends javax.swing.JFrame {
         this.crudImagen = new CrudImagenBO();
         this.crud = new CrudUsuarioBO();
         this.usuarioRegistrando = usuarioRegistrando;
+        imagenDefault= new ImageIcon(getClass().getResource("/fotoDefault.png"));
     }
 
     /**
@@ -59,10 +62,10 @@ public class FrmAgregarFotoRegistro extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        imagenPerfiles2 = new utilerias.ImagenPerfiles();
         jPanel4 = new javax.swing.JPanel();
         bContinuar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -72,6 +75,18 @@ public class FrmAgregarFotoRegistro extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/anadir.png"))); // NOI18N
+        jButton2.setContentAreaFilled(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 260, -1, -1));
+
+        imagenPerfiles2.setImagen(new javax.swing.ImageIcon(getClass().getResource("/fotoDefault.png"))); // NOI18N
+        jPanel2.add(imagenPerfiles2, new org.netbeans.lib.awtextra.AbsoluteConstraints(556, 124, 210, 210));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -86,7 +101,7 @@ public class FrmAgregarFotoRegistro extends javax.swing.JFrame {
             .addGap(0, 90, Short.MAX_VALUE)
         );
 
-        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 170, 90));
+        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 170, 90));
 
         bContinuar.setBackground(new java.awt.Color(0, 145, 26));
         bContinuar.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
@@ -99,18 +114,6 @@ public class FrmAgregarFotoRegistro extends javax.swing.JFrame {
             }
         });
         jPanel2.add(bContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 460, 250, 40));
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/anadir.png"))); // NOI18N
-        jButton2.setContentAreaFilled(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 260, -1, -1));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoDefault.png"))); // NOI18N
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 2, 24)); // NOI18N
         jLabel3.setText("¿Deseas Agregar una foto de perfil?");
@@ -166,17 +169,16 @@ public class FrmAgregarFotoRegistro extends javax.swing.JFrame {
         try {
             this.elegirFotoPerfil();
         } catch (IOException ex) {
-            Logger.getLogger(FrmAgregarFotoRegistro.class.getName()).log(Level.SEVERE, null, ex);
+           imagenPerfiles2.setImagen(imagenDefault);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void elegirFotoPerfil() throws IOException {
+    private void elegirFotoPerfil() throws IOException  {
         String path = this.obtenerPath();
-
+        
         File file = new File(path);
         this.imagenPerfil = GestorImagenesMongoDTO.crearImagen("perfil", file);
         Icon imageIcon = GestorImagenesMongoDTO.getImageIcon(this.imagenPerfil, GestorImagenesMongoDTO.SizeImage.MEDIUM);
-        jLabel2.setIcon(imageIcon);
 
     }
 
@@ -203,9 +205,9 @@ public class FrmAgregarFotoRegistro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bContinuar;
+    private utilerias.ImagenPerfiles imagenPerfiles2;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

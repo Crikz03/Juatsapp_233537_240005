@@ -44,6 +44,8 @@ public class UsuarioPrueba {
 
         try {
             usuarioDAO.guardar(usuario);
+            usuarioDAO.consultarTodos();
+            System.out.println("a"+ usuarioDAO.consultarTodos());
             System.out.println("Usuario guardado exitosamente");
         } catch (PersistenciaException e) {
             e.printStackTrace();

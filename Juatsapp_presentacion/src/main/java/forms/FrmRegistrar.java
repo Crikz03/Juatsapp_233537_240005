@@ -7,6 +7,11 @@ package forms;
 import dtos.UsuarioDTO;
 import excepciones.NegocioException;
 import interfaces.ICrudUsuarioBO;
+import java.awt.Color;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import negocio.CrudUsuarioBO;
@@ -27,6 +32,90 @@ public class FrmRegistrar extends javax.swing.JFrame {
         initComponents();
         this.crud = new CrudUsuarioBO();
         setLocationRelativeTo(this);
+        setDefaultTextAndAddFocusListener(txtNumero, "Numero");
+        setDefaultTextAndAddFocusListener(txtNombres, "Nombres");
+        setDefaultTextAndAddFocusListener(txtApellidoP, "Apellido Paterno");
+        setDefaultTextAndAddFocusListener(txtApellidoM, "Apellido Materno");
+
+        setPasswordFieldDefaultTextAndAddFocusListener(txtContraseña, "Contraseña");
+        setPasswordFieldDefaultTextAndAddFocusListener(txtContraseña1, "Confirmar Contraseña");
+
+        // Add KeyListeners for validation
+        addNumberKeyListener(txtNumero);
+        addLetterKeyListener(txtNombres);
+        addLetterKeyListener(txtApellidoP);
+        addLetterKeyListener(txtApellidoM);
+    }
+
+    private void addNumberKeyListener(javax.swing.JTextField textField) {
+        textField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!Character.isDigit(c)) {
+                    e.consume(); // ignore event if character is not a digit
+                }
+            }
+        });
+    }
+
+    private void addLetterKeyListener(javax.swing.JTextField textField) {
+        textField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!Character.isLetter(c) && c != ' ') {
+                    e.consume(); // ignore event if character is not a letter or space
+                }
+            }
+        });
+    }
+
+    private void setDefaultTextAndAddFocusListener(javax.swing.JTextField textField, String defaultText) {
+        textField.setText(defaultText);
+        textField.setForeground(Color.GRAY);
+        textField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (textField.getText().equals(defaultText)) {
+                    textField.setText("");
+                    textField.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (textField.getText().isEmpty()) {
+                    textField.setText(defaultText);
+                    textField.setForeground(Color.GRAY);
+                }
+            }
+        });
+    }
+
+    private void setPasswordFieldDefaultTextAndAddFocusListener(javax.swing.JPasswordField passwordField, String defaultText) {
+        passwordField.setText(defaultText);
+        passwordField.setForeground(Color.GRAY);
+        passwordField.setEchoChar((char) 0);
+        passwordField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (new String(passwordField.getPassword()).equals(defaultText)) {
+                    passwordField.setText("");
+                    passwordField.setForeground(Color.BLACK);
+                    passwordField.setEchoChar('*');
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (new String(passwordField.getPassword()).isEmpty()) {
+                    passwordField.setText(defaultText);
+                    passwordField.setForeground(Color.GRAY);
+                    passwordField.setEchoChar((char) 0);
+                }
+            }
+        });
     }
 
     /**
@@ -146,7 +235,7 @@ public class FrmRegistrar extends javax.swing.JFrame {
         });
         jPanel2.add(bRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 530, 300, 50));
 
-        txtContraseña1.setText("Contraseña");
+        txtContraseña1.setText("Confirmar Contraseña");
         txtContraseña1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, new java.awt.Color(102, 102, 102), java.awt.Color.white));
         txtContraseña1.setForeground(new java.awt.Color(153, 153, 153));
         txtContraseña1.addActionListener(new java.awt.event.ActionListener() {
