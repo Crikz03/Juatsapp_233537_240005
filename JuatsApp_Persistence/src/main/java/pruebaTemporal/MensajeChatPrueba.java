@@ -30,7 +30,7 @@ public class MensajeChatPrueba {
 
         try {
             // Crear un mensaje y guardarlo usando MensajeDAO
-            ObjectId usuarioReceptor = new ObjectId("6681110cc832224a66fe753f"); // Ejemplo de ObjectId para el usuario receptor
+            ObjectId usuarioReceptor = new ObjectId("6685576a3ccec649ccdf8f9f"); // Ejemplo de ObjectId para el usuario receptor
             ObjectId usaurioEmisor = new ObjectId("6681108d68383f04564c5848");
             Mensaje mensaje = new Mensaje(usuarioReceptor, "Hola, ¿cómo estás?", LocalDateTime.now());
             mensajeDAO.guardar(mensaje);

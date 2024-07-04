@@ -8,12 +8,12 @@ package chat;
  *
  * @author eljulls
  */
-public class JPanelMensaje extends javax.swing.JPanel {
+public class JPanelMensajeIzquierdo extends javax.swing.JPanel {
 
     /**
      * Creates new form JPanelMensaje
      */
-    public JPanelMensaje() {
+    public JPanelMensajeIzquierdo() {
         initComponents();
         txtMensaje.setEditable(false);
     }
@@ -35,6 +35,8 @@ public class JPanelMensaje extends javax.swing.JPanel {
 
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.PAGE_AXIS));
 
+        txtMensaje.setEditable(false);
+        txtMensaje.setBackground(new java.awt.Color(220, 248, 199));
         txtMensaje.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         txtMensaje.setMinimumSize(new java.awt.Dimension(1, 1));
         add(txtMensaje);

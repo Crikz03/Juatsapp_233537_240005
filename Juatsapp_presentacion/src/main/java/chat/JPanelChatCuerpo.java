@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollBar;
 import net.miginfocom.swing.MigLayout;
+import utilerias.ScrollBar;
 
 /**
  *
@@ -20,33 +21,38 @@ import net.miginfocom.swing.MigLayout;
  */
 public class JPanelChatCuerpo extends javax.swing.JPanel {
 
-    private Image imagenDeFondo;
 
     /**
      * Creates new form JPanelChatCuerpo
      */
     public JPanelChatCuerpo() {
         initComponents();
-        imagenDeFondo = new ImageIcon(getClass().getResource("/fondo.jpg")).getImage();
-
         metodosIniciales();
         mensajeIzquierdo("hola");
-        mensajeIzquierdo("como estass");
+        mensajeDerecho("Como estasComo estassComo estassComo estassComo estassComo estassComo estassComo estassComo estasss");
+        mensajeIzquierdo("brooooooooooooooooooooooooooooooo");
+        mensajeDerecho("Como estasComo estassComo estassComo estassComo estassComo estassComo estassComo estassComo estasss");
+        mensajeIzquierdo("brooooooooooooooooooooooooooooooo");
+        mensajeDerecho("Como estasComo estassComo estassComo estassComo estassComo estassComo estassComo estassComo estasss");
+        mensajeIzquierdo("brooooooooooooooooooooooooooooooo");
+        mensajeDerecho("Como estasComo estassComo estassComo estassComo estassComo estassComo estassComo estassComo estasss");
+        mensajeIzquierdo("brooooooooooooooooooooooooooooooo");
+        mensajeDerecho("Como estasComo estassComo estassComo estassComo estassComo estassComo estassComo estassComo estasss");
+        mensajeIzquierdo("brooooooooooooooooooooooooooooooo");
+        mensajeDerecho("Como estasComo estassComo estassComo estassComo estassComo estassComo estassComo estassComo estasss");
+        mensajeIzquierdo("brooooooooooooooooooooooooooooooo");
+        mensajeDerecho("Como estasComo estassComo estassComo estassComo estassComo estassComo estassComo estassComo estasss");
+        mensajeIzquierdo("brooooooooooooooooooooooooooooooo");
+        mensajeDerecho("Como estasComo estassComo estassComo estassComo estassComo estassComo estassComo estassComo estasss");
         mensajeIzquierdo("brooooooooooooooooooooooooooooooo");
 
     }
 
     private void metodosIniciales() {
-        jScrollPane1.setVerticalScrollBar(new JScrollBar());
-        jPanel2.setLayout(new MigLayout("fillx"));
+        jScrollPane1.setVerticalScrollBar(new ScrollBar());
+        jPanel2.setLayout(new MigLayout("fillx","","2[]2"));
     }
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        if (imagenDeFondo != null) {
-            g.drawImage(imagenDeFondo, 0, 0, jPanel2.getWidth(), jPanel2.getHeight(), jPanel2);
-        }
-    }
+    
 
     public void mensajeIzquierdo(String texto) {
         JPanelChatIzquierdo mensaje = new JPanelChatIzquierdo();
@@ -56,6 +62,16 @@ public class JPanelChatCuerpo extends javax.swing.JPanel {
         jPanel2.repaint();
         jPanel2.revalidate();
     }
+    
+       public void mensajeDerecho(String textk) {
+        JPanelChatDerecho mensaje = new JPanelChatDerecho();
+        mensaje.setTexto(textk);
+        jPanel2.add(mensaje, "wrap, al right, w ::80%");
+        //  ::80% set max with 80%
+        jPanel2.repaint();
+        jPanel2.revalidate();
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.

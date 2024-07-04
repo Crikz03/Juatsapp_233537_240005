@@ -38,7 +38,6 @@ public class JPanelHome extends javax.swing.JPanel {
         panelDerecho.setPreferredSize(new Dimension(250, Integer.MAX_VALUE)); // Set the preferred size
         iconoQuitar = panelChats.getToggleButton().getIcon();
         iconoSiguiente = new ImageIcon(getClass().getResource("/Next.png"));
-
         // Add action listener to the toggle button
         JButton toggleButton = panelChats.getToggleButton();
         toggleButton.addActionListener(e -> togglePanelDerecho());
