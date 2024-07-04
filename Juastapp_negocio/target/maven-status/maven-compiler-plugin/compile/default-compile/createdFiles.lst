@@ -2,8 +2,11 @@ negocio\CrudImagenBO.class
 com\mycompany\juastapp_negocio\Juastapp_negocio.class
 interfaces\ICrudImagenBO.class
 utilidades\GestorImagenesMongoDTO.class
+negocio\PusheaChatBO.class
 interfaces\IiniciaSesionBO.class
+negocio\VerificaChatExistenteBO.class
 interfaces\ICrudUsuarioBO.class
+interfaces\IPusheaChatBO.class
 utilidades\GestorImagenesMongoDTO$SizeImage.class
 dtos\MensajeDTO.class
 interfaces\IEliminaBO.class
@@ -22,4 +25,5 @@ excepciones\NegocioException.class
 negocio\CrudChatBO.class
 dtos\ChatDTO.class
 dtos\ImagenDTO.class
+interfaces\IVerificaChatExistenteBO.class
 interfaces\ICrudChatBO.class
