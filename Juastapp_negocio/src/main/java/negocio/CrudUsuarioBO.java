@@ -45,10 +45,11 @@ public class CrudUsuarioBO implements ICrudUsuarioBO<UsuarioDTO> {
     public void Actualizar(UsuarioDTO entidad) throws NegocioException {
         try {
             String hashedPassword = Encriptador.encriptarPassword(entidad.getContrasena());
+            System.out.println("Contraseña encriptada: " + hashedPassword);
             entidad.setContrasena(hashedPassword);
             usuariodao.actualizar(ConvertidorGeneral.convertidorEntidad(entidad, Usuario.class));
         } catch (PersistenciaException ex) {
-            throw new NegocioException("No se pudo actualizar el usuario con id: " + entidad.getId());
+            throw new NegocioException("No se pudo actualizar el usuario con id: " + entidad.getId(), ex);
         }
     }
 

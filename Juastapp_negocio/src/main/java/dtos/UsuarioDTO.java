@@ -8,6 +8,7 @@ package dtos;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import org.bson.types.ObjectId;
 import utilidades.Genero;
 
 /**
@@ -16,7 +17,7 @@ import utilidades.Genero;
  */
 public class UsuarioDTO {
 
-    private String id;
+    private ObjectId id;
     private String telefono;
     private String contrasena;
     private String nombres;
@@ -48,11 +49,11 @@ public class UsuarioDTO {
         this.direccion = direccion;
     }
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 

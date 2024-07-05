@@ -16,7 +16,7 @@ import utilidades.Encriptador;
  * @author eljulls
  */
 public class FrmLogin extends javax.swing.JFrame {
-
+    
     private IiniciaSesionBO inicio;
 
     /**
@@ -26,7 +26,7 @@ public class FrmLogin extends javax.swing.JFrame {
         initComponents();
         this.inicio = new IniciaSesionBO();
         this.setLocationRelativeTo(this);
-
+        
     }
 
     /**
@@ -185,49 +185,48 @@ public class FrmLogin extends javax.swing.JFrame {
         new FrmRegistrar().setVisible(true);
         dispose();
     }//GEN-LAST:event_bRegistrarMouseClicked
-
+    
     private void intentarIniciarSesion() throws NegocioException {
-
+        
         UsuarioDTO usuarioIniciando = inicio.iniciarSesion(txtNumero.getText());
-
+        
         if (usuarioIniciando == null) {
             this.mostrarErrorInicioSesion();
             return;
         }
-
+        
         String intentoPassword = new String(txtContraseña.getPassword());
         boolean isPasswordValida
                 = Encriptador.verificarPasswordConHash(intentoPassword, usuarioIniciando.getContrasena());
-
+        
         if (!isPasswordValida) {
             this.mostrarErrorInicioSesion();
             return;
         }
-
-        new FrmAgregarContacto(usuarioIniciando).setVisible(true);
-        dispose();
+        
+        this.iniciarSesion(usuarioIniciando);
     }
-
+    
     private boolean validarCampos() {
-
+        
         if (txtNumero.getText().isBlank()) {
             return false;
         }
-
+        
         if (new String(txtContraseña.getPassword()).isBlank()) {
             return false;
         }
-
+        
         return true;
-
+        
     }
-
+    
     private void mostrarErrorInicioSesion() {
         Dialogos.mostrarMensajeError(rootPane, "Credenciales no validas.");
     }
-
+    
     private void iniciarSesion(UsuarioDTO usuario) {
-        new FrmAgregarContacto(usuario).setVisible(true);
+        new FrmEditarPerfil(usuario).setVisible(true);
         dispose();
     }
 

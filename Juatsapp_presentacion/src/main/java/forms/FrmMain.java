@@ -86,48 +86,48 @@ public class FrmMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nuevoChat() {
-        String telefono = Dialogos.pedirInputUsuario(
-                rootPane,
-                "Ingresa usuario",
-                "Usuario"
-        );
-
-        if (telefono.equals(usuarioIniciado.getTelefono())) {
-            Dialogos.mostrarMensajeError(
-                    rootPane,
-                    "No puedes hablar contigo mismo."
-            );
-            return;
-        }
-
-        try {
-            UsuarioDTO usuarioReceptor = crudUsuario.consultaPorTelefono(telefono);
-
-            if (usuarioReceptor == null) {
-                Dialogos.mostrarMensajeError(rootPane, "No existe ese usuario.");
-                return;
-            }
-            String idUsuarioReceptor = usuarioReceptor.getId();
-            String idUsuarioLoggeado = usuarioIniciado.getId();
-
-            boolean existeChat = chatExistente.verificarChatExistente(idUsuarioLoggeado, idUsuarioReceptor);
-            if (existeChat) {
-                Dialogos.mostrarMensajeError(rootPane, "Chat ya existe");
-                return;
-            }
-
-            ChatDTO chat = new ChatDTO();
-            chat.setEmisor(usuarioIniciado.getId());
-            chat.setReceptor(usuarioReceptor.getId());
-            chat.setFecha(LocalDateTime.now());
-
-            crudChat.Guardar(chat);
-
-            pushChat.pusheaChat(usuarioReceptor.getId(), chat.getId());
-            pushChat.pusheaChat(usuarioIniciado.getId(), chat.getId());
-        } catch (NegocioException e) {
-            Dialogos.mostrarMensajeError(rootPane, "Error al crear el chat, intentelo denuevo");
-        }
+//        String telefono = Dialogos.pedirInputUsuario(
+//                rootPane,
+//                "Ingresa usuario",
+//                "Usuario"
+//        );
+//
+//        if (telefono.equals(usuarioIniciado.getTelefono())) {
+//            Dialogos.mostrarMensajeError(
+//                    rootPane,
+//                    "No puedes hablar contigo mismo."
+//            );
+//            return;
+//        }
+//
+//        try {
+//            UsuarioDTO usuarioReceptor = crudUsuario.consultaPorTelefono(telefono);
+//
+//            if (usuarioReceptor == null) {
+//                Dialogos.mostrarMensajeError(rootPane, "No existe ese usuario.");
+//                return;
+//            }
+//            String idUsuarioReceptor = usuarioReceptor.getId();
+//            String idUsuarioLoggeado = usuarioIniciado.getId();
+//
+//            boolean existeChat = chatExistente.verificarChatExistente(idUsuarioLoggeado, idUsuarioReceptor);
+//            if (existeChat) {
+//                Dialogos.mostrarMensajeError(rootPane, "Chat ya existe");
+//                return;
+//            }
+//
+//            ChatDTO chat = new ChatDTO();
+//            chat.setEmisor(usuarioIniciado.getId());
+//            chat.setReceptor(usuarioReceptor.getId());
+//            chat.setFecha(LocalDateTime.now());
+//
+//            crudChat.Guardar(chat);
+//
+//            pushChat.pusheaChat(usuarioReceptor.getId(), chat.getId());
+//            pushChat.pusheaChat(usuarioIniciado.getId(), chat.getId());
+//        } catch (NegocioException e) {
+//            Dialogos.mostrarMensajeError(rootPane, "Error al crear el chat, intentelo denuevo");
+//        }
 
     }
 
