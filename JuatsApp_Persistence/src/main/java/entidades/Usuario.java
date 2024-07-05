@@ -156,8 +156,18 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", telefono=" + telefono + ", contrasena=" + contrasena + ", nombres=" + nombres + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", sexo=" + sexo + ", chats=" + chats + ", contactos=" + contactos + ", imagenPerfil=" + imagenPerfil + ", fechaNacimiento=" + fechaNacimiento + ", direccion=" + direccion + '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Usuario{");
+        sb.append("id=").append(id);
+        sb.append(", contrasena=").append(contrasena);
+        sb.append(", telefono=").append(telefono);
+        sb.append(", sexo=").append(sexo);
+        sb.append(", chats=").append(chats);
+        sb.append(", imagenPerfil=").append(imagenPerfil);
+        sb.append(", fechaNacimiento=").append(fechaNacimiento);
+        sb.append(", direccion=").append(direccion);
+        sb.append('}');
+        return sb.toString();
     }
-
 
 }

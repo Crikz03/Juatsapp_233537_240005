@@ -42,22 +42,26 @@ public class UsuarioDAO implements IUsuarioDAO {
     @Override
     public void actualizar(Usuario usuario) throws PersistenciaException {
         try {
+            System.out.println("Actualizando usuario: " + usuario.getId());
+
+            // Crear el filtro para identificar el usuario a actualizar
             Document filter = new Document("_id", usuario.getId());
 
+            // Crear el documento de actualización con los campos modificados
             Document updateContenido = new Document();
             updateContenido.append("telefono", usuario.getTelefono());
             updateContenido.append("contrasena", usuario.getContrasena());
             updateContenido.append("nombres", usuario.getNombres());
             updateContenido.append("apellidoPaterno", usuario.getApellidoPaterno());
             updateContenido.append("apellidoMaterno", usuario.getApellidoMaterno());
-            updateContenido.append("sexo", usuario.getSexo().toString());
-            updateContenido.append("imagenPerfil", imadao.toDocument(usuario.getImagenPerfil()));
 
             Document update = new Document("$set", updateContenido);
 
             coleccionUsuarios.updateOne(filter, update);
+
+            System.out.println("Usuario actualizado correctamente: " + usuario.getId());
         } catch (MongoException e) {
-            throw new PersistenciaException("Error al actualizar el usuario con id: " + usuario.getId());
+            throw new PersistenciaException("Error al actualizar el usuario con id: " + usuario.getId(), e);
         }
     }
 
@@ -112,8 +116,6 @@ public class UsuarioDAO implements IUsuarioDAO {
         Document filtro = new Document();
         filtro.append("telefono", telefono);
         this.coleccionUsuarios.find(filtro).into(listaUsuarios);
-        System.out.println(listaUsuarios);
-
         if (listaUsuarios.isEmpty()) {
             return null;
         } else {

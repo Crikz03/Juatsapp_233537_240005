@@ -13,6 +13,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.time.LocalDateTime;
+import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import negocio.CrudUsuarioBO;
 import utilidades.Genero;
@@ -324,6 +325,7 @@ public class FrmRegistrar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void bRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegistrarseActionPerformed
         // Validar campos vacíos
         if (txtNombres.getText().trim().isEmpty()
@@ -372,7 +374,17 @@ public class FrmRegistrar extends javax.swing.JFrame {
         usuario.setApellidoPaterno(txtApellidoP.getText());
         usuario.setApellidoMaterno(txtApellidoM.getText());
         usuario.setContrasena(contraseña);
-        usuario.setSexo(Genero.Masculino);
+
+        if (bMasculino.isSelected()) {
+            usuario.setSexo(Genero.Masculino);
+        } else if (bFemenino.isSelected()) {
+            usuario.setSexo(Genero.Femenino);
+        } else if (bNoBinario.isSelected()) {
+            usuario.setSexo(Genero.NoBinario);
+        } else {
+            usuario.setSexo(Genero.NoEspecificado);
+        }
+
         LocalDateTime localDateTime = datePicker1.getDate().atStartOfDay();
         usuario.setFechaNacimiento(localDateTime);
 
