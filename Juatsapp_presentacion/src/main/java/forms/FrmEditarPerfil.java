@@ -229,6 +229,7 @@ public class FrmEditarPerfil extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContraseña1ActionPerformed
 
     private void txtGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGuardarCambiosActionPerformed
+
         try {
             UsuarioDTO actualizado = crud.consultaPorTelefono(usuarioIniciado.getTelefono());
 
@@ -236,28 +237,17 @@ public class FrmEditarPerfil extends javax.swing.JFrame {
             String nuevoApellidoP = txtApellidoP.getText().trim();
             String nuevoApellidoM = txtApellidoM.getText().trim();
 
-            // Actualizar el usuarioIniciado con los nuevos valores
             actualizado.setNombres(nuevoNombre);
             actualizado.setApellidoPaterno(nuevoApellidoP);
             actualizado.setApellidoMaterno(nuevoApellidoM);
 
-            // Aquí podrías llamar a algún método para guardar en la base de datos o hacer algún otro procesamiento necesario
-            // Por ejemplo:
-            try {
-                crud.Actualizar(actualizado);
-                JOptionPane.showMessageDialog(this, "Perfil actualizado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            } catch (NegocioException ex) {
-                JOptionPane.showMessageDialog(this, "Error al actualizar el perfil.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+            crud.Actualizar(actualizado);
+            JOptionPane.showMessageDialog(this, "Perfil actualizado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
-            // Opcionalmente, podrías cerrar el formulario después de guardar los cambios
-            // this.dispose();
+            this.dispose();
         } catch (NegocioException ex) {
-            Logger.getLogger(FrmEditarPerfil.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Error al actualizar el perfil.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-        // Opcionalmente, podrías cerrar el formulario después de guardar los cambios
-        // this.dispose();        
     }//GEN-LAST:event_txtGuardarCambiosActionPerformed
 
     private char[] solicitarContraseña() {
@@ -269,14 +259,14 @@ public class FrmEditarPerfil extends javax.swing.JFrame {
         if (option == JOptionPane.OK_OPTION) {
             return passwordField.getPassword();
         } else {
-            return null; // Usuario canceló la operación
+            return null;
         }
     }
 
     private boolean verificarContraseñaActual(String contraseñaActualEncriptada) {
         char[] contraseñaIngresada = solicitarContraseña();
         if (contraseñaIngresada == null) {
-            return false; // Usuario canceló la operación
+            return false;
         }
         return Encriptador.verificarPasswordConHash(new String(contraseñaIngresada), contraseñaActualEncriptada);
     }
