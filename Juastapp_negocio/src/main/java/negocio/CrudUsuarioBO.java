@@ -6,6 +6,8 @@ package negocio;
 
 import convertidores.ConvertidorGeneral;
 import dao.UsuarioDAO;
+import dtos.DireccionDTO;
+import dtos.ImagenDTO;
 import dtos.UsuarioDTO;
 import entidades.Usuario;
 import excepciones.NegocioException;
@@ -74,8 +76,11 @@ public class CrudUsuarioBO implements ICrudUsuarioBO<UsuarioDTO> {
     public UsuarioDTO consultaPorTelefono(String telefono) throws NegocioException {
         try {
             Usuario usuario = usuariodao.consultarPortelefono(telefono);
-
             UsuarioDTO u = ConvertidorGeneral.convertidoraDTO(usuario, UsuarioDTO.class);
+            DireccionDTO d= ConvertidorGeneral.convertidoraDTO(usuario.getDireccion(), DireccionDTO.class);
+            ImagenDTO i= ConvertidorGeneral.convertidoraDTO(usuario.getImagenPerfil(), ImagenDTO.class);
+            u.setDireccion(d);
+            u.setImagenPerfil(i);
             return u;
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al obtener el usuario con telefono: " + telefono);
