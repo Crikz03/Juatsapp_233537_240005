@@ -20,6 +20,7 @@ public class FrmMain extends javax.swing.JFrame {
         initComponents();
         JPanelHome jPanelHome = new JPanelHome(usuarioActual, consultaUsuarioPorTelefonoBO); // Pass parameters to the constructor
         jPanel1.add(jPanelHome);
+        
         // ...
     }
 
