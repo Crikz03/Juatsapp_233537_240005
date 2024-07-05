@@ -223,7 +223,7 @@ public class FrmRegistrar extends javax.swing.JFrame {
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 170, 310, 230));
 
-        bRegistrarse.setText("Registrarse");
+        bRegistrarse.setText("Continuar registro");
         bRegistrarse.setBackground(new java.awt.Color(0, 145, 26));
         bRegistrarse.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 0, true));
         bRegistrarse.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
@@ -376,7 +376,7 @@ public class FrmRegistrar extends javax.swing.JFrame {
         LocalDateTime localDateTime = datePicker1.getDate().atStartOfDay();
         usuario.setFechaNacimiento(localDateTime);
 
-        new FrmAgregarFotoRegistro(usuario).setVisible(true);
+        new FrmRegistrarDireccion(usuario).setVisible(true);
         dispose();
     }//GEN-LAST:event_bRegistrarseActionPerformed
 

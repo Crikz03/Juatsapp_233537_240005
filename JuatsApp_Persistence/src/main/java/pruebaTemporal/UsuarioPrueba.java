@@ -27,7 +27,7 @@ public class UsuarioPrueba {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
         Imagen imagenPerfil = new Imagen(new ObjectId(), "fotoPerfil.jpg", new Binary(new byte[]{0x01, 0x02, 0x03}));
-        Direccion direccion = new Direccion("Calle Falsa", "123", "Colonia Inventada", 12345);
+        Direccion direccion = new Direccion("Calle Falsa", "123", "Colonia Inventada", "12345");
         Genero genero = Genero.Masculino;
 //
         Usuario usuario = new Usuario(
@@ -45,7 +45,7 @@ public class UsuarioPrueba {
         try {
             usuarioDAO.guardar(usuario);
             usuarioDAO.consultarTodos();
-            System.out.println("a"+ usuarioDAO.consultarTodos());
+            System.out.println("a" + usuarioDAO.consultarTodos());
             System.out.println("Usuario guardado exitosamente");
         } catch (PersistenciaException e) {
             e.printStackTrace();

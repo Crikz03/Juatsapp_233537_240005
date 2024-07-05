@@ -26,4 +26,6 @@ public interface IChatDAO {
     public Chat consultarPorId(String id) throws PersistenciaException;
 
     public void pushMensaje(ObjectId chatId, ObjectId mensajeId) throws PersistenciaException;
+    
+    public boolean verificarChatExistente(String idEmisor, String idReceptor) throws PersistenciaException;
 }

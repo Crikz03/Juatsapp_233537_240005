@@ -4,8 +4,7 @@
  */
 package dtos;
 
-import entidades.Direccion;
-import entidades.Imagen;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,14 +27,14 @@ public class UsuarioDTO {
     private List<String> contactos;
     private ImagenDTO imagenPerfil;
     private LocalDateTime fechaNacimiento;
-    private Direccion direccion;
+    private DireccionDTO direccion;
 
     public UsuarioDTO() {
         this.chats = new ArrayList<>();
         this.contactos = new ArrayList<>();
     }
 
-    public UsuarioDTO(String telefono, String contrasena, String nombres, String apellidoPaterno, String apellidoMaterno, Genero sexo, ImagenDTO imagenPerfil, LocalDateTime fechaNacimiento, Direccion direccion) {
+    public UsuarioDTO(String telefono, String contrasena, String nombres, String apellidoPaterno, String apellidoMaterno, Genero sexo, ImagenDTO imagenPerfil, LocalDateTime fechaNacimiento, DireccionDTO direccion) {
         this.telefono = telefono;
         this.contrasena = contrasena;
         this.nombres = nombres;
@@ -137,13 +136,15 @@ public class UsuarioDTO {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public Direccion getDireccion() {
+    public DireccionDTO getDireccion() {
         return direccion;
     }
 
-    public void setDireccion(Direccion direccion) {
+    public void setDireccion(DireccionDTO direccion) {
         this.direccion = direccion;
     }
+
+
 
     @Override
     public String toString() {

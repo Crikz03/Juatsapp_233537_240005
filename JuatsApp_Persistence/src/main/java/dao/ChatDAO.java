@@ -71,6 +71,27 @@ public class ChatDAO implements IChatDAO {
         }
     }
 
+    @Override
+    public boolean verificarChatExistente(String idEmisor, String idReceptor) throws PersistenciaException {
+        try {
+            List<Chat> listaChats = new ArrayList<>();
+
+            Document filtro1 = new Document();
+            filtro1.append("receptor", new ObjectId(idEmisor));
+            filtro1.append("emisor", new ObjectId(idReceptor));
+
+            Document filtro2 = new Document();
+            filtro2.append("receptor", new ObjectId(idReceptor));
+            filtro2.append("emisor", new ObjectId(idEmisor));
+
+            this.coleccionChats.find(Filters.or(filtro1, filtro2)).into(listaChats);
+
+            return !listaChats.isEmpty();
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al verificar si el chat existe", e);
+        }
+    }
+
     public void pushMensaje(ObjectId chatId, ObjectId mensajeId) {
         Document updateQuery = new Document("$push", new Document("historialMensajes", mensajeId));
         this.coleccionChats.updateOne(new Document("_id", chatId), updateQuery);

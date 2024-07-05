@@ -9,6 +9,6 @@ package interfaces;
  * @author 
  * @param <DTO>
  */
-public interface ICrudUsuarioBO<DTO> extends IAgregaBO<DTO>,IActualizaBO<DTO>,IConsultaTodoBO<DTO>, IConsultaPorIdBO<DTO>, IConsultaUsuarioPorTelefonoBO<DTO>, IExisteUsuarioBO<DTO> {
+public interface ICrudUsuarioBO<DTO> extends IAgregaBO<DTO>,IActualizaBO<DTO>,IConsultaTodoBO<DTO>, IConsultaPorIdBO<DTO>, IConsultaUsuarioPorTelefonoBO, IExisteUsuarioBO<DTO>, IAñadeContactoBO {
     
 }
