@@ -222,7 +222,7 @@
             </Container>
             <Component class="javax.swing.JButton" name="bRegistrarse">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Registrarse"/>
+                <Property name="text" type="java.lang.String" value="Continuar registro"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="1a" green="91" red="0" type="rgb"/>
                 </Property>

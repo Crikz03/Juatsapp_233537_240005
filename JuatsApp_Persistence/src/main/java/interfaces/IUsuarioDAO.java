@@ -23,5 +23,11 @@ public interface IUsuarioDAO {
     public Usuario consultarPorId(String id) throws PersistenciaException;
 
     public Usuario consultarPortelefono(String telefono) throws PersistenciaException;
+    
+    public void actualizarContactos(String telefono, List<String> contactos) throws PersistenciaException;
+    
+    public void agregarContacto(String telefono, String nombreContacto) throws PersistenciaException;
+
+    public void pushChat(String userId, String chatId) throws PersistenciaException;
 
 }

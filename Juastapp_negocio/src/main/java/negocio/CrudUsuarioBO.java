@@ -14,6 +14,9 @@ import interfaces.IUsuarioDAO;
 import java.util.List;
 import utilidades.Encriptador;
 import interfaces.ICrudUsuarioBO;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -91,6 +94,24 @@ public class CrudUsuarioBO implements ICrudUsuarioBO<UsuarioDTO> {
             return u;
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al consultar el teléfono", e);
+        }
+    }
+
+    @Override
+    public void actualizarContactosUsuario(String telefono, List<String> contactos) throws NegocioException {
+        try {
+            usuariodao.actualizarContactos(telefono, contactos);
+        } catch (PersistenciaException e) {
+            throw new NegocioException("No se pudo actualizar los contactos del usuario", e);
+        }
+    }
+
+    @Override
+    public void agregarContactoUsuario(String telefono, String telefonoContacto) throws NegocioException {
+        try {
+            usuariodao.agregarContacto(telefono, telefonoContacto);
+        } catch (PersistenciaException e) {
+            throw new NegocioException("No se pudo agregar el contacto al usuario", e);
         }
     }
 

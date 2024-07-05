@@ -188,25 +188,24 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void intentarIniciarSesion() throws NegocioException {
 
-        UsuarioDTO usuario;
+        UsuarioDTO usuarioIniciando = inicio.iniciarSesion(txtNumero.getText());
 
-        usuario = inicio.iniciarSesion(txtNumero.getText());
-
-        if (usuario == null) {
+        if (usuarioIniciando == null) {
             this.mostrarErrorInicioSesion();
             return;
         }
 
         String intentoPassword = new String(txtContraseña.getPassword());
         boolean isPasswordValida
-                = Encriptador.verificarPasswordConHash(intentoPassword, usuario.getContrasena());
+                = Encriptador.verificarPasswordConHash(intentoPassword, usuarioIniciando.getContrasena());
 
         if (!isPasswordValida) {
             this.mostrarErrorInicioSesion();
             return;
         }
 
-        this.iniciarSesion(usuario);
+        new FrmAgregarContacto(usuarioIniciando).setVisible(true);
+        dispose();
     }
 
     private boolean validarCampos() {
@@ -228,7 +227,7 @@ public class FrmLogin extends javax.swing.JFrame {
     }
 
     private void iniciarSesion(UsuarioDTO usuario) {
-        new FrmMain().setVisible(true);
+        new FrmAgregarContacto(usuario).setVisible(true);
         dispose();
     }
 
