@@ -4,6 +4,8 @@
  */
 package chat;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author eljulls
@@ -26,21 +28,54 @@ public class JPanelChatArriba extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(246, 246, 246));
+        jLabel1 = new javax.swing.JLabel();
+        imagenPerfiles1 = new utilerias.ImagenPerfiles();
+        toggleButton = new utilerias.MenuButton();
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("jLabel1");
+
+        imagenPerfiles1.setImagen(new javax.swing.ImageIcon(getClass().getResource("/fotoDefault.png"))); // NOI18N
+
+        toggleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Info.png"))); // NOI18N
+        toggleButton.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/InfoSelected.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 781, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(imagenPerfiles1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 489, Short.MAX_VALUE)
+                .addComponent(toggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(toggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(imagenPerfiles1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public JButton getButton(){
+        return toggleButton;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private utilerias.ImagenPerfiles imagenPerfiles1;
+    private javax.swing.JLabel jLabel1;
+    private utilerias.MenuButton toggleButton;
     // End of variables declaration//GEN-END:variables
 }
