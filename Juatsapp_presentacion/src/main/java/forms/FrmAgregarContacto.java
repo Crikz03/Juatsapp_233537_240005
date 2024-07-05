@@ -51,11 +51,11 @@ public class FrmAgregarContacto extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         imagenPerfiles1 = new utilerias.ImagenPerfiles();
-        txtNombre = new javax.swing.JTextField();
         menuButton1 = new utilerias.MenuButton();
         bBuscarContacto = new utilerias.MenuButton();
         txtNumero = new javax.swing.JTextField();
         txtNumero2 = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,14 +107,6 @@ public class FrmAgregarContacto extends javax.swing.JFrame {
         imagenPerfiles1.setImagen(new javax.swing.ImageIcon(getClass().getResource("/fotoDefault.png"))); // NOI18N
         jPanel2.add(imagenPerfiles1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 160, 150));
 
-        txtNombre.setText("Nombre");
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
-            }
-        });
-        jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 490, 50));
-
         menuButton1.setBackground(new java.awt.Color(246, 246, 246));
         menuButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         menuButton1.setText("Añadir Contacto");
@@ -151,6 +143,9 @@ public class FrmAgregarContacto extends javax.swing.JFrame {
         });
         jPanel2.add(txtNumero2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 460, 50));
 
+        txtNombre.setText("Nombre");
+        jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 490, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -172,10 +167,6 @@ public class FrmAgregarContacto extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
 
     private void menuButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButton1ActionPerformed
 
@@ -255,7 +246,7 @@ public class FrmAgregarContacto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private utilerias.MenuButton menuButton1;
-    private javax.swing.JTextField txtNombre;
+    private javax.swing.JLabel txtNombre;
     private javax.swing.JTextField txtNumero;
     private javax.swing.JTextField txtNumero2;
     // End of variables declaration//GEN-END:variables
