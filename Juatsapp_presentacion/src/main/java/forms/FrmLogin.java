@@ -6,14 +6,7 @@ package forms;
 
 import dtos.UsuarioDTO;
 import excepciones.NegocioException;
-import interfaces.IConsultaUsuarioPorTelefonoBO;
 import interfaces.IiniciaSesionBO;
-import java.awt.Color;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import negocio.CrudUsuarioBO;
 import negocio.IniciaSesionBO;
 import utilerias.Dialogos;
 import utilidades.Encriptador;
@@ -23,9 +16,8 @@ import utilidades.Encriptador;
  * @author eljulls
  */
 public class FrmLogin extends javax.swing.JFrame {
-
+    
     private IiniciaSesionBO inicio;
-    private IConsultaUsuarioPorTelefonoBO consultaUsuarioPorTelefonoBO;
 
     /**
      * Creates new form FrmLogin
@@ -33,70 +25,8 @@ public class FrmLogin extends javax.swing.JFrame {
     public FrmLogin() {
         initComponents();
         this.inicio = new IniciaSesionBO();
-        consultaUsuarioPorTelefonoBO = new CrudUsuarioBO();
         this.setLocationRelativeTo(this);
-        setDefaultTextAndAddFocusListener(txtNumero, "Numero");
-        setPasswordFieldDefaultTextAndAddFocusListener(txtContraseña, "Contraseña");
-        addNumberKeyListener(txtNumero);
-    }
-
-    private void addNumberKeyListener(javax.swing.JTextField textField) {
-        textField.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                char c = e.getKeyChar();
-                if (!Character.isDigit(c)) {
-                    e.consume(); // ignore event if character is not a digit
-                }
-            }
-        });
-    }
-
-    private void setDefaultTextAndAddFocusListener(javax.swing.JTextField textField, String defaultText) {
-        textField.setText(defaultText);
-        textField.setForeground(Color.GRAY);
-        textField.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (textField.getText().equals(defaultText)) {
-                    textField.setText("");
-                    textField.setForeground(Color.BLACK);
-                }
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (textField.getText().isEmpty()) {
-                    textField.setText(defaultText);
-                    textField.setForeground(Color.GRAY);
-                }
-            }
-        });
-    }
-
-    private void setPasswordFieldDefaultTextAndAddFocusListener(javax.swing.JPasswordField passwordField, String defaultText) {
-        passwordField.setText(defaultText);
-        passwordField.setForeground(Color.GRAY);
-        passwordField.setEchoChar((char) 0);
-        passwordField.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (new String(passwordField.getPassword()).equals(defaultText)) {
-                    passwordField.setText("");
-                    passwordField.setForeground(Color.BLACK);
-                    passwordField.setEchoChar('*');
-                }
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (new String(passwordField.getPassword()).isEmpty()) {
-                    passwordField.setText(defaultText);
-                    passwordField.setForeground(Color.GRAY);
-                    passwordField.setEchoChar((char) 0);
-                }
-            }
-        });
+        
     }
 
     /**
@@ -118,6 +48,7 @@ public class FrmLogin extends javax.swing.JFrame {
         txtContraseña = new javax.swing.JPasswordField();
         txtNumero = new javax.swing.JTextField();
         bRegistrar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MacBook Air - 1.png"))); // NOI18N
@@ -132,8 +63,8 @@ public class FrmLogin extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setText("Log in");
         jLabel3.setFont(new java.awt.Font("Segoe UI", 2, 36)); // NOI18N
+        jLabel3.setText("Log in");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -212,6 +143,9 @@ public class FrmLogin extends javax.swing.JFrame {
         });
         jPanel2.add(bRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 510, -1, 30));
 
+        jLabel4.setText("jLabel4");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 190, -1, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MacBook Air - 1.png"))); // NOI18N
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -251,50 +185,48 @@ public class FrmLogin extends javax.swing.JFrame {
         new FrmRegistrar().setVisible(true);
         dispose();
     }//GEN-LAST:event_bRegistrarMouseClicked
-
+    
     private void intentarIniciarSesion() throws NegocioException {
-
+        
         UsuarioDTO usuarioIniciando = inicio.iniciarSesion(txtNumero.getText());
-
+        
         if (usuarioIniciando == null) {
             this.mostrarErrorInicioSesion();
             return;
         }
-
+        
         String intentoPassword = new String(txtContraseña.getPassword());
         boolean isPasswordValida
                 = Encriptador.verificarPasswordConHash(intentoPassword, usuarioIniciando.getContrasena());
-
+        
         if (!isPasswordValida) {
             this.mostrarErrorInicioSesion();
             return;
         }
-        UsuarioDTO usuarioRegistrado = consultaUsuarioPorTelefonoBO.consultaPorTelefono(usuarioIniciando.getTelefono());
-        System.out.println(usuarioRegistrado);
-        new FrmMain(usuarioRegistrado).setVisible(true);
-        dispose();
+        
+        this.iniciarSesion(usuarioIniciando);
     }
-
+    
     private boolean validarCampos() {
-
+        
         if (txtNumero.getText().isBlank()) {
             return false;
         }
-
+        
         if (new String(txtContraseña.getPassword()).isBlank()) {
             return false;
         }
-
+        
         return true;
-
+        
     }
-
+    
     private void mostrarErrorInicioSesion() {
         Dialogos.mostrarMensajeError(rootPane, "Credenciales no validas.");
     }
-
+    
     private void iniciarSesion(UsuarioDTO usuario) {
-        new FrmAgregarContacto(usuario).setVisible(true);
+        new FrmEditarPerfil(usuario).setVisible(true);
         dispose();
     }
 
@@ -339,6 +271,7 @@ public class FrmLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
