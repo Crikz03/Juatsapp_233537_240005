@@ -4,10 +4,18 @@
  */
 package forms;
 
+import dtos.ImagenDTO;
+import dtos.UsuarioDTO;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import utilerias.CargarFonts;
 
 /**
@@ -19,33 +27,46 @@ public class JPanelContacto extends javax.swing.JPanel {
     /**
      * Creates new form JPanelContacto
      */
-    public JPanelContacto(String nombre) {
+    public JPanelContacto(UsuarioDTO contacto) {
         initComponents();
         aplicarFuentePersonalizada();
         metodosIniciales();
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblNombre.setText(nombre);
+        lblNombre.setText(contacto.getNombres());
+        Icon fotoPerfil = imagenDTOAIcon(contacto.getImagenPerfil());
+        imagenPerfiles1.setImagen(fotoPerfil);
     }
-
+    
     private void aplicarFuentePersonalizada() {
         Font fuente = CargarFonts.cargarFonts("src/main/resources/SF-Pro-Text-Medium.ttf"); // Asegúrate de que la ruta sea correcta
         if (fuente != null) {
             lblNombre.setFont(fuente.deriveFont(Font.PLAIN, 14)); // Ajusta el tamaño y el estilo de la fuente
         }
     }
-
+    
     private void metodosIniciales() {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent me) {
                 setBackground(new Color(246, 246, 246));
             }
-
+            
             @Override
             public void mouseExited(MouseEvent me) {
                 setBackground(new Color(255, 255, 255));
             }
         });
+    }
+    
+    private Icon imagenDTOAIcon(ImagenDTO imagenDTO) {
+        try {
+            byte[] imageData = imagenDTO.getArchivoImagen().getData();
+            BufferedImage image = ImageIO.read(new ByteArrayInputStream(imageData));
+            return new ImageIcon(image);
+        } catch (IOException e) {
+            // Handle the exception, e.g., log an error or return a default icon
+            return null;
+        }
     }
 
     /**

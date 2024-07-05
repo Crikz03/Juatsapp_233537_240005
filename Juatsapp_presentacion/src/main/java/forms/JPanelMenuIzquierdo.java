@@ -4,7 +4,13 @@
  */
 package forms;
 
+import dtos.UsuarioDTO;
+import excepciones.NegocioException;
+import interfaces.IConsultaUsuarioPorTelefonoBO;
 import java.awt.Dimension;
+import java.awt.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import net.miginfocom.swing.MigLayout;
 import utilerias.ScrollBar;
 
@@ -14,22 +20,27 @@ import utilerias.ScrollBar;
  */
 public class JPanelMenuIzquierdo extends javax.swing.JPanel {
 
-    /**
-     * Creates new form JPanelMenuIzquierdo
-     */
-    public JPanelMenuIzquierdo() {
+    UsuarioDTO usuarioActual;
+    IConsultaUsuarioPorTelefonoBO consultaUsuarioPorTelefonoBO;
+
+    public JPanelMenuIzquierdo(UsuarioDTO usarioActual) {
         initComponents();
         listaMenu.setLayout(new MigLayout("fillx", "0[]0", "0[]0"));
         jScrollPane1.setVerticalScrollBar(new ScrollBar());
-        
+        this.usuarioActual = usarioActual;
         mostrarContactos();
     }
-    
-    
-    private void mostrarContactos(){
-        for (int i = 0; i < 9; i++) {
-            listaMenu.add(new JPanelContacto("Contacto "+i),"wrap");
+
+    private void mostrarContactos() {
+        for (String telefono : usuarioActual.getChats()) {
+            try {
+                UsuarioDTO contacto = (UsuarioDTO) consultaUsuarioPorTelefonoBO.consultaPorTelefono(telefono);
+                listaMenu.add(new JPanelContacto(contacto), "wrap");
+            } catch (NegocioException ex) {
+                Logger.getLogger(JPanelMenuIzquierdo.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+
     }
 
     /**
