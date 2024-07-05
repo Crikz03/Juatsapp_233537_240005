@@ -6,6 +6,9 @@ package forms;
 
 import dtos.UsuarioDTO;
 import interfaces.IConsultaUsuarioPorTelefonoBO;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import negocio.CrudUsuarioBO;
 
 /**
  *
@@ -13,15 +16,25 @@ import interfaces.IConsultaUsuarioPorTelefonoBO;
  */
 public class FrmMain extends javax.swing.JFrame {
 
-    private UsuarioDTO usuarioActual;
-    private IConsultaUsuarioPorTelefonoBO consultaUsuarioPorTelefonoBO;
+    UsuarioDTO usuarioActual;
+    IConsultaUsuarioPorTelefonoBO consultarporTelefonoBO;
 
-    public FrmMain() {
+    public FrmMain(UsuarioDTO usuarioActual) {
         initComponents();
-        JPanelHome jPanelHome = new JPanelHome(usuarioActual, consultaUsuarioPorTelefonoBO); // Pass parameters to the constructor
+        this.usuarioActual = usuarioActual;
+        this.consultarporTelefonoBO = new CrudUsuarioBO();
+        JPanelHome jPanelHome = new JPanelHome(usuarioActual, consultarporTelefonoBO);
+
         jPanel1.add(jPanelHome);
-        
-        // ...
+        jPanel1.setLayout(new BorderLayout()); // or new FlowLayout()
+        jPanel1.add(jPanelHome, BorderLayout.CENTER);
+        jPanel1.setPreferredSize(new Dimension(1280, 720)); // set a preferred size
+
+        jPanelHome.setVisible(true);
+
+        // Actualizar y repintar jPanel1
+        jPanel1.revalidate();
+        jPanel1.repaint();
     }
 
     /**
@@ -36,12 +49,13 @@ public class FrmMain extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1413, Short.MAX_VALUE)
+            .addGap(0, 1280, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -62,40 +76,7 @@ public class FrmMain extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmMain().setVisible(true);
-            }
-        });
-    }
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;

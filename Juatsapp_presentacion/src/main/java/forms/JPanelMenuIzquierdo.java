@@ -32,6 +32,7 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
         this.usuarioActual = usarioActual;
         this.consultaUsuarioPorTelefonoBO=consultaUsuarioPorTelefonoBO;
         mostrarChats();
+        System.out.println(usuarioActual);
     }
 
     private void mostrarChats() {
@@ -51,7 +52,7 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
 
     }
 
-    private void IniciarChats() {
+    private void iniciarChats() {
         listaMenu.removeAll();
         try {
             List<String> contactos = new ArrayList<>();
@@ -211,7 +212,7 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-        this.IniciarChats();
+        this.iniciarChats();
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void menuButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButton5ActionPerformed

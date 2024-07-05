@@ -8,6 +8,7 @@ package dtos;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import org.bson.types.ObjectId;
 import utilidades.Genero;
 
 /**
@@ -16,7 +17,7 @@ import utilidades.Genero;
  */
 public class UsuarioDTO {
 
-    private String id;
+    private ObjectId id;
     private String telefono;
     private String contrasena;
     private String nombres;
@@ -48,11 +49,11 @@ public class UsuarioDTO {
         this.direccion = direccion;
     }
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -144,21 +145,11 @@ public class UsuarioDTO {
         this.direccion = direccion;
     }
 
-
-
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Usuario{");
-        sb.append("id=").append(id);
-        sb.append(", contrasena=").append(contrasena);
-        sb.append(", telefono=").append(telefono);
-        sb.append(", sexo=").append(sexo);
-        sb.append(", chats=").append(chats);
-        sb.append(", imagenPerfil=").append(imagenPerfil);
-        sb.append(", fechaNacimiento=").append(fechaNacimiento);
-        sb.append(", direccion=").append(direccion);
-        sb.append('}');
-        return sb.toString();
+        return "UsuarioDTO{" + "id=" + id + ", telefono=" + telefono + ", contrasena=" + contrasena + ", nombres=" + nombres + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", sexo=" + sexo + ", chats=" + chats + ", contactos=" + contactos + ", imagenPerfil=" + imagenPerfil + ", fechaNacimiento=" + fechaNacimiento + ", direccion=" + direccion + '}';
     }
+
+
+
 }

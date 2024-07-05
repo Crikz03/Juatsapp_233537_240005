@@ -5,20 +5,21 @@
 package dtos;
 
 import org.bson.types.Binary;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author Chris
  */
 public class ImagenDTO {
-    private String id;
+    private ObjectId id;
     private String nombre;
     private Binary archivoImagen;
 
     public ImagenDTO() {
     }
 
-    public ImagenDTO(String id, String nombre, Binary archivoImagen) {
+    public ImagenDTO(ObjectId id, String nombre, Binary archivoImagen) {
         this.id = id;
         this.nombre = nombre;
         this.archivoImagen = archivoImagen;
@@ -29,11 +30,11 @@ public class ImagenDTO {
         this.archivoImagen = archivoImagen;
     }
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 

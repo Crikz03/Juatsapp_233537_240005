@@ -112,6 +112,8 @@ public class UsuarioDAO implements IUsuarioDAO {
         Document filtro = new Document();
         filtro.append("telefono", telefono);
         this.coleccionUsuarios.find(filtro).into(listaUsuarios);
+        System.out.println(listaUsuarios);
+
         if (listaUsuarios.isEmpty()) {
             return null;
         } else {

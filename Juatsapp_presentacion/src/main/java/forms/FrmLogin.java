@@ -6,12 +6,14 @@ package forms;
 
 import dtos.UsuarioDTO;
 import excepciones.NegocioException;
+import interfaces.IConsultaUsuarioPorTelefonoBO;
 import interfaces.IiniciaSesionBO;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import negocio.CrudUsuarioBO;
 import negocio.IniciaSesionBO;
 import utilerias.Dialogos;
 import utilidades.Encriptador;
@@ -23,6 +25,7 @@ import utilidades.Encriptador;
 public class FrmLogin extends javax.swing.JFrame {
 
     private IiniciaSesionBO inicio;
+    private IConsultaUsuarioPorTelefonoBO consultaUsuarioPorTelefonoBO;
 
     /**
      * Creates new form FrmLogin
@@ -30,6 +33,7 @@ public class FrmLogin extends javax.swing.JFrame {
     public FrmLogin() {
         initComponents();
         this.inicio = new IniciaSesionBO();
+        consultaUsuarioPorTelefonoBO = new CrudUsuarioBO();
         this.setLocationRelativeTo(this);
         setDefaultTextAndAddFocusListener(txtNumero, "Numero");
         setPasswordFieldDefaultTextAndAddFocusListener(txtContraseña, "Contraseña");
@@ -265,8 +269,9 @@ public class FrmLogin extends javax.swing.JFrame {
             this.mostrarErrorInicioSesion();
             return;
         }
-
-        new FrmAgregarContacto(usuarioIniciando).setVisible(true);
+        UsuarioDTO usuarioRegistrado = consultaUsuarioPorTelefonoBO.consultaPorTelefono(usuarioIniciando.getTelefono());
+        System.out.println(usuarioRegistrado);
+        new FrmMain(usuarioRegistrado).setVisible(true);
         dispose();
     }
 

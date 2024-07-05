@@ -30,6 +30,8 @@ public class JPanelHome extends javax.swing.JPanel {
         this.consultaUsuarioPorTelefonoBO = consultaUsuarioPorTelefonoBO;
         MetodosIniciales();
     }
+    
+    
 
     public void MetodosIniciales() {
         setLayout(new BorderLayout());
@@ -40,7 +42,7 @@ public class JPanelHome extends javax.swing.JPanel {
         this.add(panelChats, BorderLayout.CENTER);
         panelDerecho = new JPanelMenuDerecho();
         panelDerecho.setPreferredSize(new Dimension(250, Integer.MAX_VALUE)); // Set the preferred size
-
+        
         JButton toggleButton = panelChats.getToggleButton();
         toggleButton.addActionListener(e -> togglePanelDerecho());
     }
