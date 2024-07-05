@@ -177,16 +177,11 @@ public class FrmAgregarFotoRegistro extends javax.swing.JFrame {
 
     private void elegirFotoPerfil() throws IOException {
         String path = this.obtenerPath();
-        if (path==null) {
-            return;
-        }
+
         File file = new File(path);
         this.imagenPerfil = GestorImagenesMongoDTO.crearImagen("perfil", file);
         Icon imageIcon = GestorImagenesMongoDTO.getImageIcon(this.imagenPerfil, GestorImagenesMongoDTO.SizeImage.LARGE);
         imagenPerfiles2.setImagen(imageIcon);
-        imagenPerfiles2.repaint();
-        imagenPerfiles2.revalidate();
-        
     }
 
     private String obtenerPath() {

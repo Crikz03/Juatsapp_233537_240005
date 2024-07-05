@@ -5,7 +5,6 @@
 package forms;
 
 import dtos.UsuarioDTO;
-import interfaces.IConsultaUsuarioPorTelefonoBO;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.Icon;
@@ -22,27 +21,22 @@ public class JPanelHome extends javax.swing.JPanel {
     private JPanelMenuDerecho panelDerecho;
     private JPanelChats panelChats;
     private UsuarioDTO usuarioActual;
-    private IConsultaUsuarioPorTelefonoBO consultaUsuarioPorTelefonoBO;
 
-    public JPanelHome(UsuarioDTO usuarioActual, IConsultaUsuarioPorTelefonoBO consultaUsuarioPorTelefonoBO) {
+    public JPanelHome() {
         initComponents();
-        this.usuarioActual = usuarioActual;
-        this.consultaUsuarioPorTelefonoBO = consultaUsuarioPorTelefonoBO;
         MetodosIniciales();
     }
-    
-    
 
     public void MetodosIniciales() {
         setLayout(new BorderLayout());
-        JPanelMenuIzquierdo panelIzquierdo = new JPanelMenuIzquierdo(usuarioActual, consultaUsuarioPorTelefonoBO);
+        JPanelMenuIzquierdo panelIzquierdo = new JPanelMenuIzquierdo(usuarioActual);
         panelIzquierdo.setPreferredSize(new Dimension(270, Integer.MAX_VALUE));
         this.add(panelIzquierdo, BorderLayout.LINE_START);
         panelChats = new JPanelChats();
         this.add(panelChats, BorderLayout.CENTER);
         panelDerecho = new JPanelMenuDerecho();
         panelDerecho.setPreferredSize(new Dimension(250, Integer.MAX_VALUE)); // Set the preferred size
-        
+       
         JButton toggleButton = panelChats.getToggleButton();
         toggleButton.addActionListener(e -> togglePanelDerecho());
     }
@@ -57,6 +51,8 @@ public class JPanelHome extends javax.swing.JPanel {
         repaint();
     }
 
+   
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

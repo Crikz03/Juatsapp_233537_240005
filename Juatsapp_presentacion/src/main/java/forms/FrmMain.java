@@ -4,11 +4,21 @@
  */
 package forms;
 
+import dtos.ChatDTO;
 import dtos.UsuarioDTO;
-import interfaces.IConsultaUsuarioPorTelefonoBO;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import excepciones.NegocioException;
+import interfaces.ICrudChatBO;
+import interfaces.ICrudUsuarioBO;
+import interfaces.IPusheaChatBO;
+import interfaces.IVerificaChatExistenteBO;
+import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import negocio.CrudChatBO;
 import negocio.CrudUsuarioBO;
+import negocio.PusheaChatBO;
+import negocio.VerificaChatExistenteBO;
+import utilerias.Dialogos;
 
 /**
  *
@@ -16,25 +26,24 @@ import negocio.CrudUsuarioBO;
  */
 public class FrmMain extends javax.swing.JFrame {
 
-    UsuarioDTO usuarioActual;
-    IConsultaUsuarioPorTelefonoBO consultarporTelefonoBO;
+    private UsuarioDTO usuarioIniciado;
+    private ICrudUsuarioBO crudUsuario;
+    private ICrudChatBO crudChat;
+    private IPusheaChatBO pushChat;
+    private IVerificaChatExistenteBO chatExistente;
 
-    public FrmMain(UsuarioDTO usuarioActual) {
+    /**
+     * Creates new form FrmMain
+     *
+     * @param usuarioIniciado
+     */
+    public FrmMain(UsuarioDTO usuarioIniciado) {
         initComponents();
-        this.usuarioActual = usuarioActual;
-        this.consultarporTelefonoBO = new CrudUsuarioBO();
-        JPanelHome jPanelHome = new JPanelHome(usuarioActual, consultarporTelefonoBO);
-
-        jPanel1.add(jPanelHome);
-        jPanel1.setLayout(new BorderLayout()); // or new FlowLayout()
-        jPanel1.add(jPanelHome, BorderLayout.CENTER);
-        jPanel1.setPreferredSize(new Dimension(1280, 720)); // set a preferred size
-
-        jPanelHome.setVisible(true);
-
-        // Actualizar y repintar jPanel1
-        jPanel1.revalidate();
-        jPanel1.repaint();
+        this.usuarioIniciado = usuarioIniciado;
+        this.crudUsuario = new CrudUsuarioBO();
+        this.chatExistente = new VerificaChatExistenteBO();
+        this.crudChat = new CrudChatBO();
+        this.pushChat = new PusheaChatBO();
     }
 
     /**
@@ -47,19 +56,19 @@ public class FrmMain extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jPanelHome1 = new forms.JPanelHome();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
+            .addComponent(jPanelHome1, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, Short.MAX_VALUE, Short.MAX_VALUE)
+            .addComponent(jPanelHome1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -76,9 +85,54 @@ public class FrmMain extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
- 
+    private void nuevoChat() {
+//        String telefono = Dialogos.pedirInputUsuario(
+//                rootPane,
+//                "Ingresa usuario",
+//                "Usuario"
+//        );
+//
+//        if (telefono.equals(usuarioIniciado.getTelefono())) {
+//            Dialogos.mostrarMensajeError(
+//                    rootPane,
+//                    "No puedes hablar contigo mismo."
+//            );
+//            return;
+//        }
+//
+//        try {
+//            UsuarioDTO usuarioReceptor = crudUsuario.consultaPorTelefono(telefono);
+//
+//            if (usuarioReceptor == null) {
+//                Dialogos.mostrarMensajeError(rootPane, "No existe ese usuario.");
+//                return;
+//            }
+//            String idUsuarioReceptor = usuarioReceptor.getId();
+//            String idUsuarioLoggeado = usuarioIniciado.getId();
+//
+//            boolean existeChat = chatExistente.verificarChatExistente(idUsuarioLoggeado, idUsuarioReceptor);
+//            if (existeChat) {
+//                Dialogos.mostrarMensajeError(rootPane, "Chat ya existe");
+//                return;
+//            }
+//
+//            ChatDTO chat = new ChatDTO();
+//            chat.setEmisor(usuarioIniciado.getId());
+//            chat.setReceptor(usuarioReceptor.getId());
+//            chat.setFecha(LocalDateTime.now());
+//
+//            crudChat.Guardar(chat);
+//
+//            pushChat.pusheaChat(usuarioReceptor.getId(), chat.getId());
+//            pushChat.pusheaChat(usuarioIniciado.getId(), chat.getId());
+//        } catch (NegocioException e) {
+//            Dialogos.mostrarMensajeError(rootPane, "Error al crear el chat, intentelo denuevo");
+//        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
+    private forms.JPanelHome jPanelHome1;
     // End of variables declaration//GEN-END:variables
 }
