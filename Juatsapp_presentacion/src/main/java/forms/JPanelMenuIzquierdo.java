@@ -8,7 +8,9 @@ import dtos.UsuarioDTO;
 import excepciones.NegocioException;
 import interfaces.IConsultaUsuarioPorTelefonoBO;
 import java.awt.Dimension;
-import java.awt.List;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.miginfocom.swing.MigLayout;
@@ -23,24 +25,49 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
     UsuarioDTO usuarioActual;
     IConsultaUsuarioPorTelefonoBO consultaUsuarioPorTelefonoBO;
 
-    public JPanelMenuIzquierdo(UsuarioDTO usarioActual) {
+    public JPanelMenuIzquierdo(UsuarioDTO usarioActual, IConsultaUsuarioPorTelefonoBO consultaUsuarioPorTelefonoBO) {
         initComponents();
         listaMenu.setLayout(new MigLayout("fillx", "0[]0", "0[]0"));
         jScrollPane1.setVerticalScrollBar(new ScrollBar());
         this.usuarioActual = usarioActual;
-        mostrarContactos();
+        this.consultaUsuarioPorTelefonoBO=consultaUsuarioPorTelefonoBO;
+        mostrarChats();
     }
 
-    private void mostrarContactos() {
-        for (String telefono : usuarioActual.getChats()) {
-            try {
+    private void mostrarChats() {
+        listaMenu.removeAll();
+        try {
+            for (String telefono : usuarioActual.getChats()) {
+
                 UsuarioDTO contacto = (UsuarioDTO) consultaUsuarioPorTelefonoBO.consultaPorTelefono(telefono);
                 listaMenu.add(new JPanelContacto(contacto), "wrap");
-            } catch (NegocioException ex) {
-                Logger.getLogger(JPanelMenuIzquierdo.class.getName()).log(Level.SEVERE, null, ex);
             }
+
+            listaMenu.repaint();
+            listaMenu.revalidate();
+        } catch (NegocioException ex) {
+            Logger.getLogger(JPanelMenuIzquierdo.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    private void IniciarChats() {
+        listaMenu.removeAll();
+        try {
+            List<String> contactos = new ArrayList<>();
+            contactos.addAll(usuarioActual.getContactos());
+            contactos.removeAll(usuarioActual.getChats());
+
+            for (String telefono : contactos) {
+
+                UsuarioDTO contacto = (UsuarioDTO) consultaUsuarioPorTelefonoBO.consultaPorTelefono(telefono);
+                listaMenu.add(new JPanelContacto(contacto), "wrap");
+            }
+            listaMenu.repaint();
+            listaMenu.revalidate();
+        } catch (NegocioException ex) {
+            Logger.getLogger(JPanelMenuIzquierdo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -53,8 +80,8 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        menuButton2 = new utilerias.MenuButton();
-        menuButton1 = new utilerias.MenuButton();
+        btnChats = new utilerias.MenuButton();
+        btnIniciar = new utilerias.MenuButton();
         menuButton5 = new utilerias.MenuButton();
         menuButton6 = new utilerias.MenuButton();
         jPanel1 = new javax.swing.JPanel();
@@ -67,14 +94,19 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
         jLayeredPane1.setBackground(new java.awt.Color(246, 246, 246));
         jLayeredPane1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
 
-        menuButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chats.png"))); // NOI18N
-        menuButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/chatSeleccionado.png"))); // NOI18N
-
-        menuButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Edit.png"))); // NOI18N
-        menuButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/iniciarSeleccionado.png"))); // NOI18N
-        menuButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnChats.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chats.png"))); // NOI18N
+        btnChats.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/chatSeleccionado.png"))); // NOI18N
+        btnChats.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuButton1ActionPerformed(evt);
+                btnChatsActionPerformed(evt);
+            }
+        });
+
+        btnIniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Edit.png"))); // NOI18N
+        btnIniciar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/iniciarSeleccionado.png"))); // NOI18N
+        btnIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarActionPerformed(evt);
             }
         });
 
@@ -89,8 +121,8 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
         menuButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/config.png"))); // NOI18N
         menuButton6.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/ajustesSelccionado.png"))); // NOI18N
 
-        jLayeredPane1.setLayer(menuButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(menuButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(btnChats, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(btnIniciar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(menuButton5, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(menuButton6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -100,9 +132,9 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addGap(2, 2, 2)
-                .addComponent(menuButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnChats, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(menuButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(menuButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -114,12 +146,12 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(menuButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnChats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(menuButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(menuButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jLayeredPane1Layout.createSequentialGroup()
                                     .addGap(2, 2, 2)
                                     .addComponent(menuButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -178,22 +210,26 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuButton1ActionPerformed
+    private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
+        this.IniciarChats();
+    }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void menuButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuButton5ActionPerformed
 
+    private void btnChatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChatsActionPerformed
+        this.mostrarChats();
+    }//GEN-LAST:event_btnChatsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private utilerias.MenuButton btnChats;
+    private utilerias.MenuButton btnIniciar;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLayeredPane listaMenu;
-    private utilerias.MenuButton menuButton1;
-    private utilerias.MenuButton menuButton2;
     private utilerias.MenuButton menuButton5;
     private utilerias.MenuButton menuButton6;
     // End of variables declaration//GEN-END:variables

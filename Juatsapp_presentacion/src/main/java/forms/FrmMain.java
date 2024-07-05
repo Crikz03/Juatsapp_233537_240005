@@ -4,17 +4,23 @@
  */
 package forms;
 
+import dtos.UsuarioDTO;
+import interfaces.IConsultaUsuarioPorTelefonoBO;
+
 /**
  *
  * @author eljulls
  */
 public class FrmMain extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmMain
-     */
+    private UsuarioDTO usuarioActual;
+    private IConsultaUsuarioPorTelefonoBO consultaUsuarioPorTelefonoBO;
+
     public FrmMain() {
         initComponents();
+        JPanelHome jPanelHome = new JPanelHome(usuarioActual, consultaUsuarioPorTelefonoBO); // Pass parameters to the constructor
+        jPanel1.add(jPanelHome);
+        // ...
     }
 
     /**
@@ -27,7 +33,6 @@ public class FrmMain extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanelHome1 = new forms.JPanelHome();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -35,11 +40,11 @@ public class FrmMain extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelHome1, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
+            .addGap(0, 1413, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelHome1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+            .addGap(0, Short.MAX_VALUE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -93,6 +98,5 @@ public class FrmMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
-    private forms.JPanelHome jPanelHome1;
     // End of variables declaration//GEN-END:variables
 }
