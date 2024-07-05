@@ -61,13 +61,13 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                  <Component id="menuButton2" min="-2" pref="59" max="-2" attributes="0"/>
+                  <Component id="btnChats" min="-2" pref="59" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="menuButton1" min="-2" pref="54" max="-2" attributes="0"/>
+                  <Component id="btnIniciar" min="-2" pref="54" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="bAgregarContacto" min="-2" pref="54" max="-2" attributes="0"/>
+                  <Component id="menuButton5" min="-2" pref="54" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="bAjustes" min="-2" pref="54" max="-2" attributes="0"/>
+                  <Component id="menuButton6" min="-2" pref="54" max="-2" attributes="0"/>
                   <EmptySpace pref="14" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -77,15 +77,15 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="menuButton2" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnChats" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="bAjustes" min="-2" max="-2" attributes="0"/>
+                              <Component id="menuButton6" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="menuButton1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnIniciar" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                      <Component id="bAgregarContacto" min="-2" max="-2" attributes="0"/>
+                                      <Component id="menuButton5" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -98,7 +98,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="utilerias.MenuButton" name="menuButton2">
+        <Component class="utilerias.MenuButton" name="btnChats">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/chats.png"/>
@@ -107,8 +107,11 @@
               <Image iconType="3" name="/chatSeleccionado.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChatsActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="utilerias.MenuButton" name="menuButton1">
+        <Component class="utilerias.MenuButton" name="btnIniciar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Edit.png"/>
@@ -118,10 +121,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIniciarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="utilerias.MenuButton" name="bAgregarContacto">
+        <Component class="utilerias.MenuButton" name="menuButton5">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Add.png"/>
@@ -131,10 +134,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAgregarContactoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuButton5ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="utilerias.MenuButton" name="bAjustes">
+        <Component class="utilerias.MenuButton" name="menuButton6">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/config.png"/>
@@ -143,9 +146,6 @@
               <Image iconType="3" name="/ajustesSelccionado.png"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAjustesActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -9,5 +9,5 @@ package utilidades;
  * @author Carlos 233537, Chris 240005
  */
 public enum Genero {
-    Masculino, Femenino, NoBinario, NoEspecificado
+    Masculino, Femenino, NoBinario, Otro
 }

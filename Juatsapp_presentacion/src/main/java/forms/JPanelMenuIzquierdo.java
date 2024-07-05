@@ -30,7 +30,7 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
         listaMenu.setLayout(new MigLayout("fillx", "0[]0", "0[]0"));
         jScrollPane1.setVerticalScrollBar(new ScrollBar());
         this.usuarioActual = usarioActual;
-        this.consultaUsuarioPorTelefonoBO = consultaUsuarioPorTelefonoBO;
+        this.consultaUsuarioPorTelefonoBO=consultaUsuarioPorTelefonoBO;
         mostrarChats();
         System.out.println(usuarioActual);
     }
@@ -83,8 +83,8 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
         jLayeredPane1 = new javax.swing.JLayeredPane();
         btnChats = new utilerias.MenuButton();
         btnIniciar = new utilerias.MenuButton();
-        bAgregarContacto = new utilerias.MenuButton();
-        bAjustes = new utilerias.MenuButton();
+        menuButton5 = new utilerias.MenuButton();
+        menuButton6 = new utilerias.MenuButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaMenu = new javax.swing.JLayeredPane();
@@ -111,26 +111,21 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
             }
         });
 
-        bAgregarContacto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Add.png"))); // NOI18N
-        bAgregarContacto.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/nuevoSeleccionado.png"))); // NOI18N
-        bAgregarContacto.addActionListener(new java.awt.event.ActionListener() {
+        menuButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Add.png"))); // NOI18N
+        menuButton5.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/nuevoSeleccionado.png"))); // NOI18N
+        menuButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bAgregarContactoActionPerformed(evt);
+                menuButton5ActionPerformed(evt);
             }
         });
 
-        bAjustes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/config.png"))); // NOI18N
-        bAjustes.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/ajustesSelccionado.png"))); // NOI18N
-        bAjustes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bAjustesActionPerformed(evt);
-            }
-        });
+        menuButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/config.png"))); // NOI18N
+        menuButton6.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/ajustesSelccionado.png"))); // NOI18N
 
         jLayeredPane1.setLayer(btnChats, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(btnIniciar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(bAgregarContacto, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(bAjustes, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(menuButton5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(menuButton6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -142,9 +137,9 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bAgregarContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(menuButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bAjustes, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(menuButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         jLayeredPane1Layout.setVerticalGroup(
@@ -155,12 +150,12 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
                     .addComponent(btnChats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(bAjustes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(menuButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jLayeredPane1Layout.createSequentialGroup()
                                     .addGap(2, 2, 2)
-                                    .addComponent(bAgregarContacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(menuButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(8, 8, 8)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -220,28 +215,23 @@ public class JPanelMenuIzquierdo extends javax.swing.JPanel {
         this.iniciarChats();
     }//GEN-LAST:event_btnIniciarActionPerformed
 
-    private void bAgregarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarContactoActionPerformed
-        new FrmAgregarContacto(usuarioActual).setVisible(true);
-
-    }//GEN-LAST:event_bAgregarContactoActionPerformed
+    private void menuButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuButton5ActionPerformed
 
     private void btnChatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChatsActionPerformed
         this.mostrarChats();
     }//GEN-LAST:event_btnChatsActionPerformed
 
-    private void bAjustesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAjustesActionPerformed
-
-    }//GEN-LAST:event_bAjustesActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private utilerias.MenuButton bAgregarContacto;
-    private utilerias.MenuButton bAjustes;
     private utilerias.MenuButton btnChats;
     private utilerias.MenuButton btnIniciar;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLayeredPane listaMenu;
+    private utilerias.MenuButton menuButton5;
+    private utilerias.MenuButton menuButton6;
     // End of variables declaration//GEN-END:variables
 }
