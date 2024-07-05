@@ -201,7 +201,7 @@ public class FrmAgregarContacto extends javax.swing.JFrame {
             usuarioIniciado.getContactos().add(txtNombre.getText());
 
             JOptionPane.showMessageDialog(this, "Contacto añadido correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-
+           
             txtNombre.setText("");
             txtNumero.setText("");
         } catch (NegocioException ex) {
