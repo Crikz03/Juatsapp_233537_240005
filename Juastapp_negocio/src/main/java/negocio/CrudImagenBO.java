@@ -13,6 +13,7 @@ import excepciones.PersistenciaException;
 import interfaces.ICrudImagenBO;
 import interfaces.IimagenDAO;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -29,6 +30,7 @@ public class CrudImagenBO implements ICrudImagenBO<ImagenDTO> {
     @Override
     public void Guardar(ImagenDTO entidad) throws NegocioException {
         try {
+            entidad.setId(new ObjectId());
             imagendao.guardar(ConvertidorGeneral.convertidorEntidad(entidad, Imagen.class));
         } catch (PersistenciaException e) {
             throw new NegocioException("No se pudo agregar la imagen.");
