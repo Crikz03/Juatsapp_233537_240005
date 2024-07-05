@@ -4,17 +4,38 @@
  */
 package forms;
 
+import dtos.UsuarioDTO;
+import excepciones.NegocioException;
+import interfaces.ICrudUsuarioBO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import negocio.CrudUsuarioBO;
+import utilidades.Encriptador;
+
 /**
  *
  * @author eljulls
  */
 public class FrmEditarPerfil extends javax.swing.JFrame {
 
+    UsuarioDTO usuarioIniciado;
+    ICrudUsuarioBO crud;
+
     /**
      * Creates new form FrmEditarPerfil
      */
-    public FrmEditarPerfil() {
+    public FrmEditarPerfil(UsuarioDTO usuarioIniciado) {
         initComponents();
+        this.usuarioIniciado = usuarioIniciado;
+        this.crud = new CrudUsuarioBO();
+
+        jLabel2.setText(usuarioIniciado.getTelefono());
+        txtNombres.setText(usuarioIniciado.getNombres());
+        txtApellidoP.setText(usuarioIniciado.getApellidoPaterno());
+        txtApellidoM.setText(usuarioIniciado.getApellidoMaterno());
+
     }
 
     /**
@@ -32,15 +53,14 @@ public class FrmEditarPerfil extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         imagenPerfiles1 = new utilerias.ImagenPerfiles();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
+        txtApellidoP = new javax.swing.JTextField();
+        txtApellidoM = new javax.swing.JTextField();
+        txtNombres = new javax.swing.JTextField();
         txtContraseña1 = new javax.swing.JPasswordField();
-        txtContraseña = new javax.swing.JPasswordField();
-        menuButton1 = new utilerias.MenuButton();
-        menuButton2 = new utilerias.MenuButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        txtContraseña2 = new javax.swing.JPasswordField();
+        txtGuardarCambios = new utilerias.MenuButton();
+        bCambiarContraseña = new utilerias.MenuButton();
+        cbMostrarContraseña = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,83 +111,80 @@ public class FrmEditarPerfil extends javax.swing.JFrame {
         imagenPerfiles1.setImagen(new javax.swing.ImageIcon(getClass().getResource("/fotoDefault.png"))); // NOI18N
         jPanel2.add(imagenPerfiles1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 160, 150));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 28)); // NOI18N
         jLabel2.setText("Numero Telefonico");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 28)); // NOI18N
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 430, 60));
 
-        jTextField2.setText("Apellido Paterno");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtApellidoP.setText("Apellido Paterno");
+        txtApellidoP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtApellidoPActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 240, 50));
+        jPanel2.add(txtApellidoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 240, 50));
 
-        jTextField3.setText("Apellido Materno");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txtApellidoM.setText("Apellido Materno");
+        txtApellidoM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtApellidoMActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, 240, 50));
+        jPanel2.add(txtApellidoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, 240, 50));
 
-        jTextField4.setText("Nombre");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        txtNombres.setText("Nombre");
+        txtNombres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                txtNombresActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 240, 50));
-        jPanel2.add(datePicker1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 240, 50));
+        jPanel2.add(txtNombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 240, 50));
 
-        txtContraseña1.setForeground(new java.awt.Color(153, 153, 153));
-        txtContraseña1.setText("Contraseña");
         txtContraseña1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtContraseña1.setForeground(new java.awt.Color(153, 153, 153));
         txtContraseña1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtContraseña1ActionPerformed(evt);
             }
         });
-        jPanel2.add(txtContraseña1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 240, 50));
+        jPanel2.add(txtContraseña1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 240, 50));
 
-        txtContraseña.setForeground(new java.awt.Color(153, 153, 153));
-        txtContraseña.setText("Contraseña");
-        txtContraseña.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtContraseña.addActionListener(new java.awt.event.ActionListener() {
+        txtContraseña2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtContraseña2.setForeground(new java.awt.Color(153, 153, 153));
+        txtContraseña2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContraseñaActionPerformed(evt);
+                txtContraseña2ActionPerformed(evt);
             }
         });
-        jPanel2.add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 290, 240, 50));
+        jPanel2.add(txtContraseña2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 290, 240, 50));
 
-        menuButton1.setBackground(new java.awt.Color(246, 246, 246));
-        menuButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        menuButton1.setText("Guardar Cambios");
-        menuButton1.addActionListener(new java.awt.event.ActionListener() {
+        txtGuardarCambios.setText("Guardar Cambios");
+        txtGuardarCambios.setBackground(new java.awt.Color(246, 246, 246));
+        txtGuardarCambios.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtGuardarCambios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuButton1ActionPerformed(evt);
+                txtGuardarCambiosActionPerformed(evt);
             }
         });
-        jPanel2.add(menuButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 400, 187, 51));
+        jPanel2.add(txtGuardarCambios, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 400, 187, 51));
 
-        menuButton2.setBackground(new java.awt.Color(246, 246, 246));
-        menuButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        menuButton2.setText("Cambiar Contraseña");
-        menuButton2.addActionListener(new java.awt.event.ActionListener() {
+        bCambiarContraseña.setText("Cambiar Contraseña");
+        bCambiarContraseña.setBackground(new java.awt.Color(246, 246, 246));
+        bCambiarContraseña.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        bCambiarContraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuButton2ActionPerformed(evt);
+                bCambiarContraseñaActionPerformed(evt);
             }
         });
-        jPanel2.add(menuButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 400, 187, 51));
+        jPanel2.add(bCambiarContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 400, 187, 51));
 
-        jCheckBox1.setText("ver");
-        jCheckBox1.setToolTipText("");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        cbMostrarContraseña.setText("ver");
+        cbMostrarContraseña.setToolTipText("");
+        cbMostrarContraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                cbMostrarContraseñaActionPerformed(evt);
             }
         });
-        jPanel2.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 290, 70, 50));
+        jPanel2.add(cbMostrarContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 290, 70, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -191,88 +208,123 @@ public class FrmEditarPerfil extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtApellidoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtApellidoPActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txtApellidoMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoMActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtApellidoMActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_txtNombresActionPerformed
 
-    private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
+    private void txtContraseña2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseña2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtContraseñaActionPerformed
+    }//GEN-LAST:event_txtContraseña2ActionPerformed
 
     private void txtContraseña1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseña1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtContraseña1ActionPerformed
 
-    private void menuButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuButton1ActionPerformed
+    private void txtGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGuardarCambiosActionPerformed
 
-    private void menuButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuButton2ActionPerformed
-
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmEditarPerfil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmEditarPerfil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmEditarPerfil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmEditarPerfil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+            UsuarioDTO actualizado = crud.consultaPorTelefono(usuarioIniciado.getTelefono());
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmEditarPerfil().setVisible(true);
-            }
-        });
+            String nuevoNombre = txtNombres.getText().trim();
+            String nuevoApellidoP = txtApellidoP.getText().trim();
+            String nuevoApellidoM = txtApellidoM.getText().trim();
+
+            actualizado.setNombres(nuevoNombre);
+            actualizado.setApellidoPaterno(nuevoApellidoP);
+            actualizado.setApellidoMaterno(nuevoApellidoM);
+
+            crud.Actualizar(actualizado);
+            JOptionPane.showMessageDialog(this, "Perfil actualizado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+            this.dispose();
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(this, "Error al actualizar el perfil.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_txtGuardarCambiosActionPerformed
+
+    private char[] solicitarContraseña() {
+        JPasswordField passwordField = new JPasswordField();
+        Object[] message = {
+            "Ingrese su contraseña actual:", passwordField
+        };
+        int option = JOptionPane.showConfirmDialog(this, message, "Verificación de Contraseña", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        if (option == JOptionPane.OK_OPTION) {
+            return passwordField.getPassword();
+        } else {
+            return null;
+        }
     }
 
+    private boolean verificarContraseñaActual(String contraseñaActualEncriptada) {
+        char[] contraseñaIngresada = solicitarContraseña();
+        if (contraseñaIngresada == null) {
+            return false;
+        }
+        return Encriptador.verificarPasswordConHash(new String(contraseñaIngresada), contraseñaActualEncriptada);
+    }
+
+    private void bCambiarContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCambiarContraseñaActionPerformed
+        if (verificarContraseñaActual(usuarioIniciado.getContrasena())) {
+            String nuevaContraseña = txtContraseña1.getText();
+            String confirmaNuevaContraseña = txtContraseña2.getText();
+
+            if (nuevaContraseña == null || nuevaContraseña.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "La nueva contraseña no puede estar vacía.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (!nuevaContraseña.equals(confirmaNuevaContraseña)) {
+                JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden. Por favor, inténtelo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            try {
+                usuarioIniciado.setContrasena(nuevaContraseña);
+                System.out.println("Nueva contraseña antes de encriptar: " + nuevaContraseña);
+                crud.Actualizar(usuarioIniciado);
+                JOptionPane.showMessageDialog(this, "Contraseña actualizada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            } catch (NegocioException ex) {
+                Logger.getLogger(FrmEditarPerfil.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "Error al actualizar la contraseña.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "La contraseña actual ingresada es incorrecta.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bCambiarContraseñaActionPerformed
+
+    private void cbMostrarContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMostrarContraseñaActionPerformed
+        if (cbMostrarContraseña.isSelected()) {
+            txtContraseña1.setEchoChar((char) 0);
+            txtContraseña2.setEchoChar((char) 0);
+        } else {
+            txtContraseña1.setEchoChar('*');
+            txtContraseña2.setEchoChar('*');
+        }
+    }//GEN-LAST:event_cbMostrarContraseñaActionPerformed
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.github.lgooddatepicker.components.DatePicker datePicker1;
+    private utilerias.MenuButton bCambiarContraseña;
+    private javax.swing.JCheckBox cbMostrarContraseña;
     private utilerias.ImagenPerfiles imagenPerfiles1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private utilerias.MenuButton menuButton1;
-    private utilerias.MenuButton menuButton2;
-    private javax.swing.JPasswordField txtContraseña;
+    private javax.swing.JTextField txtApellidoM;
+    private javax.swing.JTextField txtApellidoP;
     private javax.swing.JPasswordField txtContraseña1;
+    private javax.swing.JPasswordField txtContraseña2;
+    private utilerias.MenuButton txtGuardarCambios;
+    private javax.swing.JTextField txtNombres;
     // End of variables declaration//GEN-END:variables
 }
