@@ -35,31 +35,57 @@ public class JPanelChatDerecho extends javax.swing.JLayeredPane {
     private void initComponents() {
 
         jPanelMensaje2 = new chat.JPanelMensajeIzquierdo();
+        menuButton2 = new utilerias.MenuButton();
+        menuButton3 = new utilerias.MenuButton();
 
         setBackground(java.awt.Color.green);
 
+        menuButton2.setBorder(null);
+        menuButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trash.png"))); // NOI18N
+        menuButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/trashSelected.png"))); // NOI18N
+
+        menuButton3.setBorder(null);
+        menuButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/editmsg.png"))); // NOI18N
+        menuButton3.setIconoSeleccionado(new javax.swing.ImageIcon(getClass().getResource("/editmsgSelected.png"))); // NOI18N
+        menuButton3.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/editmsgSelected.png"))); // NOI18N
+
         setLayer(jPanelMensaje2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(menuButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(menuButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(336, 336, 336)
-                .addComponent(jPanelMensaje2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(336, 336, 336)
+                        .addComponent(jPanelMensaje2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(menuButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(menuButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelMensaje2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanelMensaje2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(menuButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menuButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private chat.JPanelMensajeIzquierdo jPanelMensaje2;
+    private utilerias.MenuButton menuButton2;
+    private utilerias.MenuButton menuButton3;
     // End of variables declaration//GEN-END:variables
 }
