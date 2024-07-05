@@ -113,11 +113,21 @@ public class Usuario {
     }
 
     public List<String> getContactos() {
-        return contactos;
+        return this.contactos;
     }
 
-    public void setContactos(List<String> contactos) {
-        this.contactos = contactos;
+    public void agregarContacto(String nombreContacto) {
+        if (!this.contactos.contains(nombreContacto)) {
+            this.contactos.add(nombreContacto);
+        }
+    }
+
+    public boolean tieneContacto(String nombreContacto) {
+        return this.contactos.contains(nombreContacto);
+    }
+
+    public void eliminarContacto(String nombreContacto) {
+        this.contactos.remove(nombreContacto);
     }
 
     public Imagen getImagenPerfil() {

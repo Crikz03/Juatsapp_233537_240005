@@ -4,18 +4,14 @@
  */
 package forms;
 
+import dtos.DireccionDTO;
 import dtos.UsuarioDTO;
-import excepciones.NegocioException;
 import interfaces.ICrudUsuarioBO;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import negocio.CrudUsuarioBO;
-import utilidades.Genero;
 
 /**
  *
@@ -24,23 +20,22 @@ import utilidades.Genero;
 public class FrmRegistrarDireccion extends javax.swing.JFrame {
 
     ICrudUsuarioBO crud;
+    private UsuarioDTO usuarioRegistrando;
 
     /**
      * Creates new form FrmRegistrar
      */
-    public FrmRegistrarDireccion() {
+    public FrmRegistrarDireccion(UsuarioDTO usuarioRegistrando) {
         initComponents();
         this.crud = new CrudUsuarioBO();
+        this.usuarioRegistrando = usuarioRegistrando;
         setLocationRelativeTo(this);
         setDefaultTextAndAddFocusListener(txtColonia, "Colonia");
         setDefaultTextAndAddFocusListener(txtCalle, "Calle");
         setDefaultTextAndAddFocusListener(txtNumero, "Numero");
         setDefaultTextAndAddFocusListener(txtCp, "Codigo Postal");
 
-   
     }
-
-  
 
     private void setDefaultTextAndAddFocusListener(javax.swing.JTextField textField, String defaultText) {
         textField.setText(defaultText);
@@ -216,58 +211,25 @@ public class FrmRegistrarDireccion extends javax.swing.JFrame {
 
     private void bRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegistrarseActionPerformed
 //        // Validar campos vacíos
-//        if (txtNombres.getText().trim().isEmpty()
-//            || txtApellidoP.getText().trim().isEmpty()
-//            || txtApellidoM.getText().trim().isEmpty()
-//            || txtNumero.getText().trim().isEmpty()
-//            || txtContraseña.getPassword().length == 0
-//            || txtContraseña1.getPassword().length == 0
-//            || datePicker1.getDate() == null) {
-//
-//            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Error", JOptionPane.ERROR_MESSAGE);
-//            return;
-//        }
-//
-//        if (!validarTelefono(txtNumero.getText())) {
-//            JOptionPane.showMessageDialog(this, "El número de teléfono no es válido.", "Error de teléfono", JOptionPane.ERROR_MESSAGE);
-//            return;
-//        }
-//
-//        if (!validarContrasena(txtContraseña.getText())) {
-//            JOptionPane.showMessageDialog(this, "La contraseña no cumple con los requisitos.", "Error de contraseña", JOptionPane.ERROR_MESSAGE);
-//            return;
-//        }
-//
-//        String contraseña = new String(txtContraseña.getPassword()).trim();
-//        String confirmarContraseña = new String(txtContraseña1.getPassword()).trim();
-//
-//        if (!contraseña.equals(confirmarContraseña)) {
-//            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden.", "Error de contraseña", JOptionPane.ERROR_MESSAGE);
-//            return;
-//        }
-//
-//        try {
-//            if (crud.existeUsuario(txtNumero.getText()) != null) {
-//                JOptionPane.showMessageDialog(this, "El número de teléfono ya está registrado.", "Error de teléfono", JOptionPane.ERROR_MESSAGE);
-//                return;
-//            }
-//        } catch (NegocioException e) {
-//            JOptionPane.showMessageDialog(this, "Error al verificar el número de teléfono.", "Error", JOptionPane.ERROR_MESSAGE);
-//            return;
-//        }
-//
-//        UsuarioDTO usuario = new UsuarioDTO();
-//        usuario.setTelefono(txtNumero.getText());
-//        usuario.setNombres(txtNombres.getText());
-//        usuario.setApellidoPaterno(txtApellidoP.getText());
-//        usuario.setApellidoMaterno(txtApellidoM.getText());
-//        usuario.setContrasena(contraseña);
-//        usuario.setSexo(Genero.Masculino);
-//        LocalDateTime localDateTime = datePicker1.getDate().atStartOfDay();
-//        usuario.setFechaNacimiento(localDateTime);
-//
-//        new FrmAgregarFotoRegistro(usuario).setVisible(true);
-//        dispose();
+        if (txtCalle.getText().trim().isEmpty()
+                || txtColonia.getText().trim().isEmpty()
+                || txtCp.getText().trim().isEmpty()
+                || txtNumero.getText().trim().isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        DireccionDTO direccion = new DireccionDTO();
+        direccion.setColonia(txtColonia.getText());
+        direccion.setCalle(txtCalle.getText());
+        direccion.setNumero(txtNumero.getText());
+        direccion.setCodigoPostal(txtCp.getText());
+
+        usuarioRegistrando.setDireccion(direccion);
+
+        new FrmAgregarFotoRegistro(usuarioRegistrando).setVisible(true);
+        dispose();
     }//GEN-LAST:event_bRegistrarseActionPerformed
 
     private void txtColoniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColoniaActionPerformed
@@ -294,41 +256,6 @@ public class FrmRegistrarDireccion extends javax.swing.JFrame {
         return contrasena.matches(regex);
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistrarDireccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistrarDireccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistrarDireccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistrarDireccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmRegistrarDireccion().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bRegistrarse;

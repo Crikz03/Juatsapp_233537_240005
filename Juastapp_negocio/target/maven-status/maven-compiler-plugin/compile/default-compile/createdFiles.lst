@@ -16,12 +16,15 @@ interfaces\IConsultaUsuarioPorTelefonoBO.class
 interfaces\IConsultaPorIdBO.class
 interfaces\IAgregaBO.class
 convertidores\ConvertidorGeneral.class
+convertidores\ConvertidorContacto.class
 interfaces\IActualizaBO.class
+interfaces\IAñadeContactoBO.class
 negocio\IniciaSesionBO.class
 interfaces\IConsultaTodoBO.class
 interfaces\IExisteUsuarioBO.class
 dtos\UsuarioDTO.class
 excepciones\NegocioException.class
+dtos\ContactoDTO.class
 negocio\CrudChatBO.class
 dtos\ChatDTO.class
 dtos\ImagenDTO.class

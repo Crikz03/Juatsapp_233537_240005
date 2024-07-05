@@ -48,7 +48,7 @@ public class FrmAgregarFotoRegistro extends javax.swing.JFrame {
         this.crudImagen = new CrudImagenBO();
         this.crud = new CrudUsuarioBO();
         this.usuarioRegistrando = usuarioRegistrando;
-        imagenDefault= new ImageIcon(getClass().getResource("/fotoDefault.png"));
+        imagenDefault = new ImageIcon(getClass().getResource("/fotoDefault.png"));
     }
 
     /**
@@ -155,6 +155,8 @@ public class FrmAgregarFotoRegistro extends javax.swing.JFrame {
             if (imagenPerfil != null) {
                 crudImagen.Guardar(imagenPerfil);
                 usuarioRegistrando.setImagenPerfil(imagenPerfil);
+            } else {
+                usuarioRegistrando.setImagenPerfil((ImagenDTO) imagenDefault);
             }
 
             crud.Guardar(usuarioRegistrando);
@@ -169,17 +171,17 @@ public class FrmAgregarFotoRegistro extends javax.swing.JFrame {
         try {
             this.elegirFotoPerfil();
         } catch (IOException ex) {
-           imagenPerfiles2.setImagen(imagenDefault);
+            imagenPerfiles2.setImagen(imagenDefault);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void elegirFotoPerfil() throws IOException  {
+    private void elegirFotoPerfil() throws IOException {
         String path = this.obtenerPath();
-        
+
         File file = new File(path);
         this.imagenPerfil = GestorImagenesMongoDTO.crearImagen("perfil", file);
-        Icon imageIcon = GestorImagenesMongoDTO.getImageIcon(this.imagenPerfil, GestorImagenesMongoDTO.SizeImage.MEDIUM);
-
+        Icon imageIcon = GestorImagenesMongoDTO.getImageIcon(this.imagenPerfil, GestorImagenesMongoDTO.SizeImage.LARGE);
+        imagenPerfiles2.setImagen(imageIcon);
     }
 
     private String obtenerPath() {

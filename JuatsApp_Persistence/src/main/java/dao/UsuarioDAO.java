@@ -6,6 +6,7 @@ package dao;
 
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.UpdateOptions;
 import conexion.ConexionMongoDB;
 import entidades.Usuario;
 import excepciones.PersistenciaException;
@@ -57,6 +58,31 @@ public class UsuarioDAO implements IUsuarioDAO {
             coleccionUsuarios.updateOne(filter, update);
         } catch (MongoException e) {
             throw new PersistenciaException("Error al actualizar el usuario con id: " + usuario.getId());
+        }
+    }
+
+    @Override
+    public void actualizarContactos(String telefono, List<String> contactos) throws PersistenciaException {
+        try {
+            Document filtro = new Document("telefono", telefono);
+            Document actualizacion = new Document("$set", new Document("contactos", contactos));
+            UpdateOptions opciones = new UpdateOptions().upsert(true);
+
+            coleccionUsuarios.updateOne(filtro, actualizacion, opciones);
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al actualizar contactos para el usuario con teléfono: " + telefono, e);
+        }
+    }
+
+    @Override
+    public void agregarContacto(String telefono, String telefonoContacto) throws PersistenciaException {
+        try {
+            Document filtro = new Document("telefono", telefono);
+            Document actualizacion = new Document("$addToSet", new Document("contactos", telefonoContacto));
+
+            coleccionUsuarios.updateOne(filtro, actualizacion);
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al agregar contacto para el usuario con teléfono: " + telefono, e);
         }
     }
 

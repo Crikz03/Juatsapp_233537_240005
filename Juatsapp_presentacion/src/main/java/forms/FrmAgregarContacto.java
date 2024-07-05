@@ -4,17 +4,37 @@
  */
 package forms;
 
+import dtos.UsuarioDTO;
+import excepciones.NegocioException;
+import interfaces.ICrudUsuarioBO;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import negocio.CrudUsuarioBO;
+
 /**
  *
  * @author eljulls
  */
 public class FrmAgregarContacto extends javax.swing.JFrame {
 
+    ICrudUsuarioBO crud;
+    UsuarioDTO contacto;
+    UsuarioDTO usuarioIniciado;
+
     /**
      * Creates new form FrmEditarPerfil
+     *
+     * @param usuarioIniciado
      */
-    public FrmAgregarContacto() {
+    public FrmAgregarContacto(UsuarioDTO usuarioIniciado) {
         initComponents();
+        this.crud = new CrudUsuarioBO();
+        this.contacto = new UsuarioDTO();
+        this.usuarioIniciado = usuarioIniciado;
     }
 
     /**
@@ -31,32 +51,31 @@ public class FrmAgregarContacto extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         imagenPerfiles1 = new utilerias.ImagenPerfiles();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         menuButton1 = new utilerias.MenuButton();
-        menuButton2 = new utilerias.MenuButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        bBuscarContacto = new utilerias.MenuButton();
+        txtNumero = new javax.swing.JTextField();
+        txtNumero2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(246, 246, 246));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
 
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 122, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Back.png"))); // NOI18N
         jButton1.setText("   Regresar");
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 122, 255));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Agregar Contacto");
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 42)); // NOI18N
+        jLabel1.setText("Agregar Contacto");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -88,45 +107,49 @@ public class FrmAgregarContacto extends javax.swing.JFrame {
         imagenPerfiles1.setImagen(new javax.swing.ImageIcon(getClass().getResource("/fotoDefault.png"))); // NOI18N
         jPanel2.add(imagenPerfiles1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 160, 150));
 
-        jLabel2.setText("Nombre");
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 28)); // NOI18N
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, 260, 60));
-
-        jTextField4.setText("Numero");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        txtNombre.setText("Nombre");
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                txtNombreActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 460, 50));
+        jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 490, 50));
 
-        menuButton1.setText("Añadir Contacto");
         menuButton1.setBackground(new java.awt.Color(246, 246, 246));
         menuButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        menuButton1.setText("Añadir Contacto");
         menuButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(menuButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 340, 187, 51));
+        jPanel2.add(menuButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 340, 187, 51));
 
-        menuButton2.setText("Buscar Contacto");
-        menuButton2.setBackground(new java.awt.Color(246, 246, 246));
-        menuButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        menuButton2.addActionListener(new java.awt.event.ActionListener() {
+        bBuscarContacto.setBackground(new java.awt.Color(246, 246, 246));
+        bBuscarContacto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        bBuscarContacto.setText("Buscar Contacto");
+        bBuscarContacto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuButton2ActionPerformed(evt);
+                bBuscarContactoActionPerformed(evt);
             }
         });
-        jPanel2.add(menuButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 187, 51));
+        jPanel2.add(bBuscarContacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 187, 51));
 
-        jLabel3.setText("Nombre");
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 28)); // NOI18N
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 260, 60));
+        txtNumero.setText("Numero");
+        txtNumero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumeroActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 460, 50));
 
-        jLabel4.setText("Nombre");
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 28)); // NOI18N
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 260, 60));
+        txtNumero2.setText("Numero");
+        txtNumero2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumero2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtNumero2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 460, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,65 +173,90 @@ public class FrmAgregarContacto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_txtNombreActionPerformed
 
     private void menuButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButton1ActionPerformed
-        // TODO add your handling code here:
+
+        if (usuarioIniciado == null) {
+            JOptionPane.showMessageDialog(this, "El usuario no está correctamente inicializado.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String nombre = txtNombre.getText().trim();
+        String numero = txtNumero.getText().trim();
+
+        if (nombre.isEmpty() || numero.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+
+            crud.agregarContactoUsuario(usuarioIniciado.getTelefono(), contacto.getTelefono());
+
+            if (usuarioIniciado.getContactos() == null) {
+                usuarioIniciado.setContactos(new ArrayList<>());
+            }
+            usuarioIniciado.getContactos().add(txtNombre.getText());
+
+            JOptionPane.showMessageDialog(this, "Contacto añadido correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+            txtNombre.setText("");
+            txtNumero.setText("");
+        } catch (NegocioException ex) {
+            Logger.getLogger(FrmAgregarContacto.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Error al añadir el contacto: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_menuButton1ActionPerformed
 
-    private void menuButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuButton2ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void bBuscarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarContactoActionPerformed
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmAgregarContacto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmAgregarContacto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmAgregarContacto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmAgregarContacto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+            contacto = crud.consultaPorTelefono(txtNumero.getText());
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmAgregarContacto().setVisible(true);
+            if (contacto != null) {
+                JOptionPane.showMessageDialog(this, "Contacto encontrado", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+                String nombreCompleto = contacto.getNombres() + " " + contacto.getApellidoPaterno() + " " + contacto.getApellidoMaterno();
+                txtNombre.setText(nombreCompleto);
+
+                if (contacto.getImagenPerfil() != null && contacto.getImagenPerfil().getArchivoImagen() != null) {
+                    byte[] imageData = contacto.getImagenPerfil().getArchivoImagen().getData();
+                    ImageIcon imageIcon = new ImageIcon(imageData);
+                    imagenPerfiles1.setImagen(imageIcon);
+                } else {
+                    imagenPerfiles1.setImagen(null);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(this, "No se encontró el contacto", "Error", JOptionPane.ERROR_MESSAGE);
+                txtNombre.setText("");
+                imagenPerfiles1.setImagen(null);
             }
-        });
-    }
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(this, "Error al buscar el contacto", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bBuscarContactoActionPerformed
+
+    private void txtNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNumeroActionPerformed
+
+    private void txtNumero2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumero2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNumero2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private utilerias.MenuButton bBuscarContacto;
     private utilerias.ImagenPerfiles imagenPerfiles1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField4;
     private utilerias.MenuButton menuButton1;
-    private utilerias.MenuButton menuButton2;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNumero;
+    private javax.swing.JTextField txtNumero2;
     // End of variables declaration//GEN-END:variables
 }
